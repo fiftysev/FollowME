@@ -1,15 +1,15 @@
 <template>
-  <hello-world />
+  <ChoiceComponent />
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld'
+import ChoiceComponent from '@/components/ChoiceComponent'
 
 export default {
   name: 'Home',
 
   components: {
-    HelloWorld
+    ChoiceComponent
   }
 }
 </script>

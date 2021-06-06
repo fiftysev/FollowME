@@ -17,13 +17,10 @@
     <router-link
       tag="a"
       :to="{name: 'Place', params: {category: selected}}"
-      class="button bg-blue-400 w-1/2 py-2 px-3 mt-3 text-white"
+      class="button bg-blue-400 w-1/2 py-2 px-3 mt-3 text-white text-center font-bold"
     >
       Начать поиск
     </router-link>
-    <span
-      class="font-bold text-white underline mt-3 cursor-pointer"
-    >Отменить выбор</span>
   </div>
 </template>
 
