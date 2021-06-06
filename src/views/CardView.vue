@@ -1,6 +1,11 @@
 <template>
   <div class="place flex justify-center py-52">
-    <h3 v-if="loading" class="text-black">Загружаю данные...</h3>
+    <semipolar-spinner
+      v-if="loading"
+      :animation-duration="2000"
+      :size="130"
+      :color="'#65dc9d'"
+    />
     <PlaceCard
       v-else
       :title="placeOptions.title"
@@ -16,17 +21,18 @@
 
 <script>
 import PlaceCard from '@/components/PlaceCard'
+import { SemipolarSpinner } from 'epic-spinners'
 export default {
   name: 'CardView',
-  components: { PlaceCard },
+  components: { PlaceCard, SemipolarSpinner },
   data () {
     return {
-      loading: false,
+      loading: true,
       placeOptions: {
-        title: '',
-        address: '',
-        description: '',
-        bus_station: '',
+        title: 'bar',
+        address: 'bar',
+        description: 'bar',
+        bus_station: 'bar',
         rating: null,
         tags: [],
         image: ''
