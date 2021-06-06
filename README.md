@@ -5,14 +5,17 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Для лайв-тестов
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Перед билдом и запуском сервера проверить директории в Express сервере!
+
+### Для тестирования "как на продакшн" через Express
 ```
 npm run build
+nodemon testServer.js
 ```
 
 ### Lints and fixes files
@@ -20,5 +23,4 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
