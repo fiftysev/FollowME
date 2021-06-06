@@ -1,6 +1,14 @@
 <template>
-  <div class="container shadow-md">
-
+  <div class="container shadow-md flex justify-between">
+    <img :src="image" alt="">
+    <div class="container flex flex-col justify-between">
+      <h3>{{title}}</h3>
+      <p>{{description}}</p>
+      <span>{{address}}</span>
+      <span>{{bus_station}}</span>
+      <h4>{{rating}}</h4>
+      <span v-for="tag in tags" v-bind:key="tag" >{{tag}}</span>
+    </div>
   </div>
 </template>
 
