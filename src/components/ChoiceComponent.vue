@@ -16,13 +16,10 @@
     </select>
     <router-link
       tag="a"
-      to="/place/:category"
+      :to="{name: 'Place', params: {category: selected}}"
       class="button"
     >
-      <button
-        class="rounded-md bg-blue-400 text-white font-bold mt-3 py-2 px-3"
-        @click.prevent
-      >Начать поиск</button>
+      Начать поиск
     </router-link>
     <span
       class="font-bold text-white underline mt-3 cursor-pointer"
