@@ -17,7 +17,7 @@
     <router-link
       tag="a"
       :to="{name: 'Place', params: {category: selected}}"
-      class="button"
+      class="button bg-blue-400 w-1/2 py-2 px-3 mt-3 text-white"
     >
       Начать поиск
     </router-link>
