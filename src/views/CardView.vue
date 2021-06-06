@@ -1,6 +1,6 @@
 <template>
   <div class="place flex justify-center py-52">
-    <h3 v-if="loading">Загружаю данные...</h3>
+    <h3 v-if="loading" class="text-black">Загружаю данные...</h3>
     <PlaceCard
       v-else
       :title="placeOptions.title"
@@ -21,7 +21,7 @@ export default {
   components: { PlaceCard },
   data () {
     return {
-      loading: true,
+      loading: false,
       placeOptions: {
         title: '',
         address: '',
@@ -41,7 +41,7 @@ export default {
   },
   async created () {
     this.loading = true
-    const response = await fetch('/place/cafe')
+    const response = await fetch(`/place/${this.category}`)
     this.placeOptions = await response.json()
     this.loading = false
   }
