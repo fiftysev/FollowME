@@ -1,13 +1,15 @@
 <template>
-  <div class="home flex justify-center py-52">
-    <ChoiceComponent/>
-  </div>
+  <hello-world />
 </template>
 
 <script>
-import ChoiceComponent from '@/components/ChoiceComponent'
+import HelloWorld from '../components/HelloWorld'
+
 export default {
   name: 'Home',
-  components: { ChoiceComponent }
+
+  components: {
+    HelloWorld
+  }
 }
 </script>

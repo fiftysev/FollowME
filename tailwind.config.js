@@ -1,14 +1,14 @@
 module.exports = {
   purge: [
-  './public/**/*.html',
-  './src/**/*.vue',
+    './public/**/*.html',
+    './src/**/*.vue'
   ],
   theme: {
-  extend: {},
-},
-variants: {},
-plugins: [
-  require('@tailwindcss/forms'),
+    extend: {}
+  },
+  variants: {},
+  plugins: [
+    require('@tailwindcss/forms')
 
-],
-};
+  ]
+}
