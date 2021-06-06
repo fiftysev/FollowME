@@ -1,6 +1,6 @@
 # client
 
-## Project setup
+## Установка
 ```
 npm install
 ```
@@ -18,7 +18,7 @@ npm run build
 nodemon testServer.js
 ```
 
-### Lints and fixes files
+### Если хотите, чтоб на вас наорали и унизили
 ```
 npm run lint
 ```
