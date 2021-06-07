@@ -1,5 +1,5 @@
 <template>
-  <div class="place flex justify-center py-52">
+  <div class="place flex justify-center">
     <semipolar-spinner
       v-if="loading"
       :animation-duration="2000"

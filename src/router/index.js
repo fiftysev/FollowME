@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CardView from '@/views/CardView'
+import SignUpView from '@/views/SignUpView'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,11 @@ const routes = [
     name: 'Place',
     component: CardView,
     props: true
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUpView
   }
 ]
 

@@ -1,9 +1,11 @@
 <template>
-    <div class="app container--fluid main">
-      <div class="navbar mb-44">
+    <div class="app container--fluid main grid min-h-screen place-items-center">
+      <div class="navbar">
         <h2 class="font-bold text-white text-2xl">С Л Е Д У Й З А М Н О Й</h2>
       </div>
-      <router-view></router-view>
+      <div class="container grid place-items-center min-h-screen">
+        <router-view></router-view>
+      </div>
     </div>
 </template>
 
@@ -21,8 +23,7 @@ export default {
 <style scoped>
   .main {
     background: url('./assets/sora-sagano-Br9RTmdSeTo-unsplash.jpg');
-    background-size: cover;
-    height: 100vh;
+    background-size: 100%;
   }
   .app {
     @apply flex flex-col items-center
