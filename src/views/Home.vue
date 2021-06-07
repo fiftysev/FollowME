@@ -1,5 +1,5 @@
 <template>
-  <ChoiceComponent />
+  <ChoiceComponent class="w-2/3"/>
 </template>
 
 <script>
