@@ -21,7 +21,15 @@
       <p>{{description}}</p>
       <hr>
       <div class="container flex">
-        <span v-for="tag in tags" v-bind:key="tag" class="p-1">{{tag}}</span>
+        <!--Тут наверное немного костыльно, хотя это единственное, что работает из того, что пробовал-->
+        <span
+          v-for="tag in tags"
+          v-bind:key="tag"
+          :style="{background: tag.color}"
+          class="m-4 p-2 rounded"
+        >
+          {{tag.tag}}
+        </span>
       </div>
     </div>
   </div>

@@ -21,7 +21,8 @@ let place = {
   description: 'Место, где скорее всего придется работать, если не удастся защитить курсач на отлично',
   bus_station: 'Калина Молл',
   rating: 4.8,
-  tags: ['cafe', 'lounge'],
+  //Изменил формат массива tags
+  tags: [{'tag': 'lounge', 'color': '#00CF91'}, {'tag': 'cafe', 'color': '#1771F1'}],
   image: 'https://static.vl.ru/catalog/1482713713154_big_vlru.jpg'
 }
 
