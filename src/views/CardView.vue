@@ -2,7 +2,7 @@
   <div class=" w-2/3 place flex justify-center py-12">
     <PlaceCardSkeletonLoader
       v-if="loading"
-      class="w-2/3">
+      class="w-2/3 rounded-md">
     </PlaceCardSkeletonLoader>
     <PlaceCard
       v-else
