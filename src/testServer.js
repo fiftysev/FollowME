@@ -35,10 +35,10 @@ app.get('/place/:category', (req, res) => {
     3000)
 });
 
-app.use('/', express.static(path.resolve(__dirname, '../client/dist')));
+app.use('/', express.static(path.resolve(__dirname, '../dist')));
 
 app.get('*', (req, res) => {
-  res.send(path.resolve(__dirname, '../client/dist', 'index.html'))
+  res.send(path.resolve(__dirname, '../dist', 'index.html'))
 })
 
 app.listen(8081, () => {
