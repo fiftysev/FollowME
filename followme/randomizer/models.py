@@ -9,8 +9,8 @@ class Place(models.Model):
     place_station = models.CharField(max_length=120, blank=True)
     place_description = models.TextField()
     place_rating = models.FloatField()
-    place_url = models.URLField(max_length=300, blank=True)
     place_tags = TaggableManager()
 
     def __str__(self):
         return f'[{self.place_name}]'
+
