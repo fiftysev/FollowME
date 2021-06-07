@@ -35,10 +35,11 @@ app.get('/place/:category', (req, res) => {
       res.status(200).json(place),
     3000)
 });
-
+// Тут ты менял путь с '../client/dist' на '../dist' так что если не будет работать не забудь поменять
 app.use('/', express.static(path.resolve(__dirname, '../dist')));
 
 app.get('*', (req, res) => {
+  // Тут тоже
   res.send(path.resolve(__dirname, '../dist', 'index.html'))
 })
 
