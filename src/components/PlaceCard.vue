@@ -13,8 +13,9 @@
 
     <div class="w-2/3 flex flex-col justify-around p-8 text-left">
       <div class="container flex justify-between">
-        <h3 class="text-xl">{{title}}</h3>
-        <h4>{{rating}}</h4>
+        <h3 class="text-xl self-center">{{title}}</h3>
+        <!-- Здесь попытался подтянуть к рейтинг-компоненту значения из запроса, не получилось-->
+        <rating :rating_value="rating"></rating>
       </div>
       <hr>
       <p>{{description}}</p>
@@ -27,8 +28,10 @@
 </template>
 
 <script>
+import Rating from '@/components/Rating'
 export default {
   name: 'PlaceCard',
+  components: { Rating },
   props: {
     title: {
       type: String,
