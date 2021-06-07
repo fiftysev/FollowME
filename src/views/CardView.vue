@@ -1,11 +1,9 @@
 <template>
-  <div class="place flex justify-center py-52">
-    <semipolar-spinner
+  <div class=" w-2/3 place flex justify-center py-12">
+    <PlaceCardSkeletonLoader
       v-if="loading"
-      :animation-duration="2000"
-      :size="130"
-      :color="'#65dc9d'"
-    />
+      class="w-2/3">
+    </PlaceCardSkeletonLoader>
     <PlaceCard
       v-else
       :title="placeOptions.title"
@@ -21,10 +19,10 @@
 
 <script>
 import PlaceCard from '@/components/PlaceCard'
-import { SemipolarSpinner } from 'epic-spinners'
+import PlaceCardSkeletonLoader from '@/components/PlaceCardSkeletonLoader'
 export default {
   name: 'CardView',
-  components: { PlaceCard, SemipolarSpinner },
+  components: { PlaceCard, PlaceCardSkeletonLoader },
   data () {
     return {
       loading: true,
