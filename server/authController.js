@@ -21,14 +21,14 @@ class authController{
             }
             const {username, password} = req.body;
             const candidate = await User.findOne({username});
-            console.log(username, password)
             if (candidate) {
                 return res.status(400).json({message: 'Username is already exists'});
             }
             const passwordHash = bcrypt.hashSync(password, 5);
             const user = new User({username, password: passwordHash});
             await user.save();
-            return res.json({message: 'Register success'});
+            const token = generateToken(user._id);
+            return res.status(200).send({auth: true, token: token, user: user});
         }catch(e) {
             console.log(e);
             res.status(400).json({message: 'Reg error , check data'});
@@ -47,7 +47,7 @@ class authController{
                 return res.status(400).json({message: 'invalid password'});
             }
             const token = generateToken(user._id);
-            return res.json({token});
+            return res.status(200).send({auth: true, token: token, user: user});
         }catch(e) {
             console.log(e);
             res.status(400).json({message: "Login error , check data"});
