@@ -14,13 +14,46 @@
         {{option.text}}
       </option>
     </select>
-    <router-link
-      tag="a"
-      :to="{name: 'Place', params: {category: selected}}"
-      class="button bg-blue-400 w-1/2 py-2 px-3 mt-3 text-white text-center font-bold"
+    <v-btn
+      v-if="selected"
+      class="w-1/2 mt-4 px-3 font-bold"
+      style="color: white; background: #5381b8"
+    >
+      <router-link
+        tag="a"
+        :to="{name: 'Place', params: {category: selected}}"
+      >
+        Начать поиск
+      </router-link>
+    </v-btn>
+
+    <v-btn
+      v-else
+      @click="snackbar = true"
+      class="w-1/2 mt-4 px-3 font-bold"
+      style="color: white; background: #5381b8"
     >
       Начать поиск
-    </router-link>
+    </v-btn>
+
+    <v-snackbar
+      v-model="snackbar"
+      :multi-line="multiLine"
+
+    >
+      {{notSelectedExceptionMessage}}
+      <template>
+        <v-btn
+          plain
+          text
+          :disabled="button_disabled"
+          style="color: red"
+          @click="snackbar = false"
+        >
+          Закрыть
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -32,7 +65,11 @@ export default {
       selected: null,
       options: [
         { id: 1, value: 'bar', text: 'Бары' }
-      ]
+      ],
+      notSelectedExceptionMessage: 'Чтобы осуществить поиск, выберите категорию.',
+      multiLine: true,
+      snackbar: false,
+      button_disabled: false
     }
   },
   async created () {
