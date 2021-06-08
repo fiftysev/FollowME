@@ -47,7 +47,7 @@
           plain
           text
           :disabled="button_disabled"
-          style="color: red"
+          style="color: #60c5fc"
           @click="snackbar = false"
         >
           Закрыть
