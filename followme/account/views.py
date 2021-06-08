@@ -1,16 +1,24 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm
-from django.views.generic.edit import FormView
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import AllowAny
+from .models import User
+from .serializers import UserRegistrationSerializer
 
 
-class RegisterFormView(FormView):
-    form_class = UserCreationForm
-    success_url = "/login/"
-    template_name = "registration.html"
+class RegistrationUserView(CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserRegistrationSerializer
+    permission_classes = [AllowAny]
 
-    def form_valid(self, form):
-        form.save()
-        return super(RegisterFormView, self).form_valid(form)
-
-    def form_invalid(self, form):
-        return super(RegisterFormView, self).form_invalid(form)
+    def post(self, request, *args, **kwargs):
+        serializer = UserRegistrationSerializer(data=request.data)
+        data = {}
+        if serializer.is_valid():
+            serializer.save()
+            data['response'] = True
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            data = serializer.errors
+            return Response(data)
