@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path');
 const mongoose = require('mongoose')
 const authRouter = require('./authRouter')
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 
@@ -41,7 +41,7 @@ app.get('/place/:category', (req, res) => {
 app.use('/', express.static(path.resolve(__dirname, '../dist')));
 
 app.get('*', (req, res) => {
-    res.send(path.resolve(__dirname, '../client/dist', 'index.html'))
+    res.send(path.resolve(__dirname, '../dist', 'index.html'))
 })
 
 const start = async () => {
