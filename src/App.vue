@@ -1,6 +1,6 @@
 <template>
     <div class="app container--fluid main grid min-h-screen place-items-center">
-      <div class="navbar">
+      <div class="navbar pt-4">
         <h2 class="font-bold text-white text-2xl">
           <router-link tag="a" :to="{name: 'Home'}">
             С Л Е Д У Й З А М Н О Й
