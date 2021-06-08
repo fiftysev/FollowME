@@ -15,7 +15,7 @@
       <div class="container flex justify-between">
         <h3 class="text-xl self-center">{{title}}</h3>
         <!-- Здесь попытался подтянуть к рейтинг-компоненту значения из запроса, не получилось-->
-        <rating :rating_value="rating"></rating>
+        <rating :rating_value="rating" class="self-center"></rating>
       </div>
       <hr>
       <p>{{description}}</p>
@@ -24,7 +24,7 @@
         <!--Тут наверное немного костыльно, хотя это единственное, что работает из того, что пробовал-->
         <span
           v-for="tag in tags"
-          v-bind:key="tag"
+          v-bind:key="tag.tag"
           :style="{background: tag.color}"
           class="m-4 p-2 rounded"
         >
