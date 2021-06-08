@@ -13,7 +13,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     def save_user(self, *args, **kwargs):
         user = User(
             firstname=self.validated_data['first_name'],
-            lastname=self.validated_data['last_aname'],
+            lastname=self.validated_data['last_name'],
             username=self.validated_data['username']
         )
         password = self.validated_data['password']
