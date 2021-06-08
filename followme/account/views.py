@@ -1,17 +1,16 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import FormView
 
 
-def registration(request):
-    data = {}
-    if request.method() == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            data['form'] = form
-            data['res'] = 'success'
-            return render(request, 'templates/registration.html', data)
-        else:
-            form = UserCreationForm()
-            data['form'] = form
-            return render(request, 'pages/registration.html', data)
+class RegisterFormView(FormView):
+    form_class = UserCreationForm
+    success_url = "/login/"
+    template_name = "registration.html"
+
+    def form_valid(self, form):
+        form.save()
+        return super(RegisterFormView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        return super(RegisterFormView, self).form_invalid(form)
