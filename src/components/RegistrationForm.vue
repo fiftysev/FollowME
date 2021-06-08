@@ -86,6 +86,7 @@
         >Подтверждение пароля
         </label>
         <input
+          v-model="password_confirmation"
           id="password-confirm"
           type="password"
           name="password-confirm"
@@ -96,6 +97,7 @@
         <button
           type="submit"
           class="w-full mt-5 py-2 tracking-widest uppercase font-medium bg-black rounded shadow-md hover:bg-blue-600 hover:shadow-none focus:outline-none"
+          @click.prevent="handleRegisterSubmit"
         ><span class="text-white">Зарегистрироваться</span>
         </button>
         <p
@@ -111,12 +113,50 @@
 <script>
 export default {
   name: 'RegistrationForm',
+  props: {
+    nextUrl: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
       firstName: '',
       lastName: '',
       username: '',
-      password: ''
+      password: '',
+      password_confirmation: ''
+    }
+  },
+  methods: {
+    handleRegisterSubmit () {
+      if (this.password === this.password_confirmation && this.password.length > 0) {
+        const url = 'http://localhost:8080/auth/register'
+        this.$http.post(url, {
+          username: this.username,
+          password: this.password
+        })
+          .then(res => {
+            localStorage.setItem('user', JSON.stringify(res.data.user))
+            localStorage.setItem('jwt', res.data.token)
+
+            if (localStorage.getItem('jwt') != null) {
+              this.$emit('loggedIn')
+              if (this.$route.params.nextUrl != null) {
+                this.$router.push(this.$route.params.nextUrl)
+              } else {
+                this.$router.push('/')
+              }
+            }
+          }).catch(e => {
+            console.log(e)
+          })
+      } else {
+        this.password = ''
+        this.password_confirmation = ' '
+
+        return alert('Пароли не совпадают')
+      }
     }
   }
 }
