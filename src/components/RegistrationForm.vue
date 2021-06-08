@@ -129,10 +129,10 @@ export default {
     }
   },
   methods: {
-    handleRegisterSubmit () {
+    async handleRegisterSubmit () {
       if (this.password === this.password_confirmation && this.password.length > 0) {
-        const url = 'http://localhost:8080/auth/register'
-        this.$http.post(url, {
+        const url = '/auth/register'
+        await this.$http.post(url, {
           username: this.username,
           password: this.password
         })

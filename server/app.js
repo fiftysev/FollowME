@@ -2,12 +2,14 @@ const express = require('express')
 const path = require('path');
 const mongoose = require('mongoose')
 const authRouter = require('./authRouter')
+const cors = require('cors')
 const PORT = process.env.PORT || 8080;
 
 const app = express();
 
 app.use(express.json());
 app.use('/auth', authRouter)
+app.use(cors())
 
 let CATEGORIES = [
     {id: 1, value: "bar", text: "Бары"},
@@ -38,11 +40,11 @@ app.get('/place/:category', (req, res) => {
         3000)
 });
 
-app.use('/', express.static(path.resolve(__dirname, '../dist')));
-
-app.get('*', (req, res) => {
-    res.send(path.resolve(__dirname, '../dist', 'index.html'))
-})
+// app.use('/', express.static(path.resolve(__dirname, '../dist')));
+//
+// app.get('*', (req, res) => {
+//     res.send(path.resolve(__dirname, '../dist', 'index.html'))
+// })
 
 const start = async () => {
     try {
