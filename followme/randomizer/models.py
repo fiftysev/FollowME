@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from taggit.managers import TaggableManager
 
 
@@ -13,3 +14,4 @@ class Place(models.Model):
 
     def __str__(self):
         return f'[{self.place_name}]'
+

@@ -10,7 +10,7 @@ def registration(request):
             form.save()
             data['form'] = form
             data['res'] = 'success'
-            return render(request, 'pages/registration.html', data)
+            return render(request, 'templates/registration.html', data)
         else:
             form = UserCreationForm()
             data['form'] = form
