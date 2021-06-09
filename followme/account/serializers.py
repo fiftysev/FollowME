@@ -9,6 +9,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         model = User
         fields = ['first_name', 'last_name', 'username',
                   'password', 'confirm_password']
+        read_only_fields = ['email']
 
     def save_user(self, *args, **kwargs):
         user = User(

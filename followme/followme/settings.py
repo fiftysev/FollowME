@@ -41,12 +41,15 @@ INSTALLED_APPS = [
     'account',
     'taggit',
     'rest_framework',
+    'snippets.apps.SnippetsConfig',
     'corsheaders',
     'djoser',
+    'rest_framework_simplejwt',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
@@ -58,6 +61,10 @@ REST_FRAMEWORK = {
 DJOSER = {
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': False,
+}
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': 'JWT',
 }
 
 MIDDLEWARE = [
