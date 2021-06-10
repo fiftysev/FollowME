@@ -71,7 +71,7 @@ export default {
       const username = this.username
       const password = this.password
       this.$store.dispatch('login', { username, password })
-        .then(() => this.$router.go(-1))
+        .then(() => this.$router.push('/'))
         .catch(e => console.log(e))
     }
   }

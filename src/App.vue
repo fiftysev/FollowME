@@ -57,11 +57,11 @@ export default {
     handleLogout () {
       this.$store.dispatch('logout')
         .then(() => {
-          this.$router.go(0)
+          this.$router.go(-1)
         })
     }
   },
-  created () {
+  mounted () {
     this.$http.interceptors.response.use(undefined, err => {
       return new Promise((resolve, reject) => {
         if (err.status === 401 && err.config) {

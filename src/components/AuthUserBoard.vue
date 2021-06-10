@@ -12,10 +12,9 @@ export default {
       username: ''
     }
   },
-  mounted () {
-    const userdata = localStorage.getItem('user')
-    const res = JSON.parse(userdata)
-    this.username = res.username
+  created () {
+    const user = this.$store.getters.authedUser
+    this.username = JSON.parse(user).username
   }
 }
 </script>
