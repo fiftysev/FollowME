@@ -1,17 +1,19 @@
 from django.db import models
-from django.urls import reverse
-from taggit.managers import TaggableManager
 
 
 class Place(models.Model):
-    place_name = models.CharField(max_length=120)
-    place_photo = models.URLField(max_length=300)
-    place_address = models.CharField(max_length=300, blank=True)
-    place_station = models.CharField(max_length=120, blank=True)
-    place_description = models.TextField()
-    place_rating = models.FloatField()
-    place_tags = TaggableManager()
+    id = models.AutoField(primary_key=True, unique=True)
+    name = models.CharField(max_length=120)
+    photo = models.URLField(max_length=300)
+    address = models.CharField(max_length=300, blank=True)
+    station = models.CharField(max_length=120, blank=True)
+    description = models.TextField()
+    rating = models.FloatField(default=0)
 
     def __str__(self):
-        return f'[{self.place_name}]'
+        return f'[{self.name}]'
+
+
+class Tag(models.Model):
+    tag_name = models.CharField(max_length=30)
 
