@@ -1,26 +1,29 @@
+from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 from .models import User
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
-    confirm_password = serializers.CharField()
+    confirm_password = serializers.CharField(style={'input_type': 'password'})
+    password = serializers.CharField(style={'input_type': 'password'})
 
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username',
                   'password', 'confirm_password']
-        read_only_fields = ['email']
+        extra_kwargs = {'password': {'write_only': True}}
+        read_only_fields = ['is_active', 'is_staff']
 
-    def save_user(self, *args, **kwargs):
+    def create(self, *args, **kwargs):
         user = User(
-            firstname=self.validated_data['first_name'],
-            lastname=self.validated_data['last_name'],
+            first_name=self.validated_data['first_name'],
+            last_name=self.validated_data['last_name'],
             username=self.validated_data['username']
         )
         password = self.validated_data['password']
         confirm_password = self.validated_data['confirm_password']
         if password != confirm_password:
             raise serializers.ValidationError("Пароли не совпадают")
-        user.set_password(password)
+        user.set_password(make_password(self.validated_data['password']))
         user.save()
         return user

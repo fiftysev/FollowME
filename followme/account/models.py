@@ -1,11 +1,12 @@
 from django.db import models
 from rest_framework import permissions
-from django.contrib.auth.models import (AbstractUser,
+from django.contrib.auth.models import (AbstractBaseUser,
+                                        AbstractUser,
                                         BaseUserManager)
 
 
 class UserManager(BaseUserManager):
-    def _create_user(self, first_name, last_name, username, password, email, **extra_fields):
+    def _create_user(self, first_name, last_name, username, password, **extra_fields):
         if not first_name:
             raise ValueError("Вы не ввели имя")
         if not last_name:
@@ -16,18 +17,18 @@ class UserManager(BaseUserManager):
             first_name=first_name,
             last_name=last_name,
             username=username,
-            email=email,
             **extra_fields,
         )
+
         user.set_password(password)
         user.save(using=self._db)
         return user
 
     def create_user(self, first_name, last_name, username, password, email=None):
-        return self._create_user(first_name, last_name, username, password, email)
+        return self._create_user(first_name, last_name, username, password, is_staff=False, is_superuser=False)
 
-    def create_superuser(self, username, password, email, first_name='admin', last_name='admin'):
-        return self._create_user(first_name, last_name, username, password, email, is_staff=True, is_superuser=True)
+    def create_superuser(self, username, password, first_name='admin', last_name='admin'):
+        return self._create_user(first_name, last_name, username, password, is_staff=True, is_superuser=True)
 
 
 class User(AbstractUser):
@@ -35,12 +36,12 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
-    email = models.CharField(max_length=100, blank=True, unique=True)
+    email = models.CharField(max_length=100, blank=True, unique=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = UserManager()
 
