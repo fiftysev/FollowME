@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'account',
     'taggit',
     'rest_framework',
-    'snippets.apps.SnippetsConfig',
     'corsheaders',
     'djoser',
     'rest_framework_simplejwt',
