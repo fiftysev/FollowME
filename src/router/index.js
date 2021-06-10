@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import CardView from '@/views/CardView'
 import RegistrationForm from '@/components/RegistrationForm'
 import AuthUserBoard from '@/components/AuthUserBoard'
+import LoginForm from '@/components/LoginForm'
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,11 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/login',
+    name: 'LogIn',
+    component: LoginForm
   }
 ]
 

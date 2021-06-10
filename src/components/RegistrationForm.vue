@@ -104,7 +104,6 @@
           class="flex justify-between inline-block mt-4 text-md italic text-gray-500 cursor-pointer uppercase hover:text-black"
         >Уже есть аккаунт?
         </p>
-        <p>{{password}}</p>
       </form>
     </div>
   </div>
