@@ -1,26 +1,46 @@
 <template>
-  <div class="container shadow-md flex bg-white rounded justify-between">
-    <div class="w-1/3 p-8 flex flex-col text-center">
-      <div class="container pb-full overflow-hidden relative mb-4">
-        <img :src="image" alt="" class="rounded-2xl absolute h-full w-full object-cover">
-      </div>
+  <div class="container
+              py-4 px-2 lg:p-0
+              shadow-md
+              flex flex-col lg:flex-row justify-between
+              bg-white
+              rounded-2xl sm:text-center
+              sm:text-xl md:text-2xl lg:text-xl xl:text-xl 2xl:text-2xl">
 
+    <div class="lg:w-1/2 pt-4 lg:p-8 flex flex-col justify-around text-center">
+      <img
+          :src="image"
+          alt=""
+          class="rounded-2xl object-cover self-center
+                  w-11/12"
+      >
+      <h3 class="text-2xl md:text-3xl self-center lg:hidden py-4">{{title}}</h3>
+      <hr class="lg:hidden">
       <span class="py-4">{{address}}</span>
       <hr>
       <span class="py-4">{{bus_station}}</span>
       <hr>
     </div>
 
-    <div class="w-2/3 flex flex-col justify-around p-8 text-left">
-      <div class="container flex justify-between">
-        <h3 class="text-xl self-center">{{title}}</h3>
+    <div class="lg:w-1/2 flex flex-col justify-around lg:p-8 text-center lg:text-left">
+      <div class="container lg:flex lg:justify-between">
+
+        <h3 class="lg:text-4xl xl:text-5xl 2xl:text-5xl
+                   self-center
+                   hidden lg:inline-block"
+        >{{title}}</h3>
+
         <!-- Здесь попытался подтянуть к рейтинг-компоненту значения из запроса, не получилось-->
-        <rating :rating_value="rating" class="self-center"></rating>
+        <rating
+          :rating_value="rating"
+          class="self-center py-4 lg:p-0 lg:scale-200"
+        ></rating>
+
       </div>
       <hr>
-      <p>{{description}}</p>
+      <p class="py-4 lg:p-0 w-2/3 lg:w-full self-center lg:self-start">{{description}}</p>
       <hr>
-      <div class="container flex">
+      <div class="container flex py-4 lg:p-0 justify-center lg:justify-start">
         <!--Тут наверное немного костыльно, хотя это единственное, что работает из того, что пробовал-->
         <span
           v-for="tag in tags"

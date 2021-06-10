@@ -1,8 +1,11 @@
 <template>
-  <div class="container shadow-md flex bg-white rounded justify-between">
-    <div class="w-1/3 p-8 flex flex-col text-center">
+  <div class="container shadow-md
+              flex flex-col lg:flex-row justify-between
+              bg-white rounded-2xl ">
+
+    <div class="lg:w-1/2 pt-4 lg:p-8 flex flex-col text-center justify-around">
         <v-skeleton-loader
-          class="rounded-2xl"
+          class="rounded-2xl w-11/12 self-center"
           type="image"
         ></v-skeleton-loader>
 
@@ -12,10 +15,10 @@
       <hr>
     </div>
 
-    <div class="w-2/3 flex flex-col justify-around p-8 text-left">
-      <v-skeleton-loader type="list-item" class="text-xl"></v-skeleton-loader>
+    <div class="lg:w-1/2 flex flex-col justify-around lg:p-8 text-center lg:text-left">
+      <v-skeleton-loader type="list-item" class="text-2xl"></v-skeleton-loader>
       <hr>
-      <v-skeleton-loader type="paragraph"></v-skeleton-loader>
+      <v-skeleton-loader type="paragraph" class="py-2 px-4"></v-skeleton-loader>
       <hr>
       <v-skeleton-loader type="list-item"></v-skeleton-loader>
     </div>

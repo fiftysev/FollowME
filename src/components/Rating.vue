@@ -4,7 +4,8 @@
       half-increments
       hover
       length="5"
-      size="32"
+      :size="star_size"
+      v-resize
       @click.prevent="rate"
     ></v-rating>
 <!-- Сделать вывод среднего рейтинга, прилетающего с сервера, компонент нужен только для отправки данных о рейтинге на сервер -->
@@ -19,9 +20,22 @@ export default {
       default: 2.5
     }
   },
+
   data () {
     return {
       userRating: null
+    }
+  },
+
+  computed: {
+    star_size () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'sm': return 32
+        case 'md': return 32
+        case 'lg': return 48
+        case 'xl': return 48
+        default: return 24
+      }
     }
   },
   methods: {

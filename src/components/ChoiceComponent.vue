@@ -1,5 +1,5 @@
 <template>
-  <div class="card w-1/4 bg-green-400 py-5 rounded-md flex flex-col items-center">
+  <div class="card w-64 md:w-96 xl:h-48 xl:w-128 bg-green-400 py-5 rounded-md flex flex-col items-center">
     <select
       name="placepicker"
       id="place"
@@ -16,7 +16,7 @@
     </select>
     <v-btn
       v-if="selected"
-      class="w-1/2 mt-4 px-3 font-bold"
+      class="w-2/3 mt-4 xl:mt-10 px-3 font-bold"
       style="color: white; background: #5381b8"
     >
       <router-link
@@ -30,7 +30,7 @@
     <v-btn
       v-else
       @click="snackbar = true"
-      class="w-1/2 mt-4 px-3 font-bold"
+      class="w-2/3 mt-4 xl:mt-10 px-3 font-bold"
       style="color: white; background: #5381b8"
     >
       Начать поиск
@@ -39,6 +39,7 @@
     <v-snackbar
       v-model="snackbar"
       :multi-line="multiLine"
+      min-width="260"
 
     >
       {{notSelectedExceptionMessage}}
@@ -72,6 +73,7 @@ export default {
       button_disabled: false
     }
   },
+
   async created () {
     const response = await fetch('/api/categories')
     this.options = await response.json()
