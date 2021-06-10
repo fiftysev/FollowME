@@ -6,7 +6,7 @@
             С Л Е Д У Й З А М Н О Й
           </router-link>
         </h2>
-        <div class="buttons flex" v-if="isAuthorized">
+        <div class="buttons flex" v-if="isAuth">
           <router-link tag="a" :to="{name: 'UserBoard'}">
             <div
               class="border-2 border-green-600 rounded-lg px-3 py-2 text-green-200 cursor-pointer hover:bg-green-600 hover:text-white font-bold mr-3"
@@ -49,15 +49,16 @@
 export default {
   name: 'App',
   computed: {
-    isAuthorized: () => {
-      return localStorage.getItem('jwt') != null && localStorage.getItem('user') != null
+    isAuth: () => {
+      return this.$store.getters.isAuth
     }
   },
   methods: {
     handleLogout () {
-      localStorage.removeItem('jwt')
-      localStorage.removeItem('user')
-      this.$router.go(0)
+      this.$store.dispatch('logout')
+        .then(() => {
+          this.$router.go(0)
+        })
     }
   }
 }

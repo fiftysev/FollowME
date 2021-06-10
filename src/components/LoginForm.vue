@@ -67,29 +67,12 @@ export default {
     }
   },
   methods: {
-    async handleLoginSubmit () {
-      if (this.password.length > 0) {
-        const url = '/auth/login'
-        await this.$http.post(url, {
-          username: this.username,
-          password: this.password
-        })
-          .then(res => {
-            localStorage.setItem('user', JSON.stringify(res.data.user))
-            localStorage.setItem('jwt', res.data.token)
-
-            if (localStorage.getItem('jwt') != null) {
-              this.$emit('loggedIn')
-              if (this.$route.params.nextUrl != null) {
-                this.$router.push(this.$route.params.nextUrl)
-              } else {
-                this.$router.push('/')
-              }
-            }
-          }).catch(e => {
-            console.log(e)
-          })
-      }
+    handleLoginSubmit () {
+      const username = this.username
+      const password = this.password
+      this.$store.dispatch('login', { username, password })
+        .then(() => this.$router.go(-1))
+        .catch(e => console.log(e))
     }
   }
 }

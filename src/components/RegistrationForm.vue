@@ -128,34 +128,14 @@ export default {
     }
   },
   methods: {
-    async handleRegisterSubmit () {
-      if (this.password === this.password_confirmation && this.password.length > 0) {
-        const url = '/auth/register'
-        await this.$http.post(url, {
-          username: this.username,
-          password: this.password
-        })
-          .then(res => {
-            localStorage.setItem('user', JSON.stringify(res.data.user))
-            localStorage.setItem('jwt', res.data.token)
-
-            if (localStorage.getItem('jwt') != null) {
-              this.$emit('loggedIn')
-              if (this.$route.params.nextUrl != null) {
-                this.$router.push(this.$route.params.nextUrl)
-              } else {
-                this.$router.push('/')
-              }
-            }
-          }).catch(e => {
-            console.log(e)
-          })
-      } else {
-        this.password = ''
-        this.password_confirmation = ' '
-
-        return alert('Пароли не совпадают')
+    handleRegisterSubmit () {
+      const data = {
+        username: this.username,
+        password: this.password
       }
+      this.$store.dispatch('register', data)
+        .then(() => this.$router.go(-1))
+        .catch(e => console.log(e))
     }
   }
 }
