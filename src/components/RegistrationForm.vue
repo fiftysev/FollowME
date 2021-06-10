@@ -134,7 +134,7 @@ export default {
         password: this.password
       }
       this.$store.dispatch('register', data)
-        .then(() => this.$router.go(-1))
+        .then(() => this.$router.push('/'))
         .catch(e => console.log(e))
     }
   }

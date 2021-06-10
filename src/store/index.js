@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -30,12 +31,12 @@ export default new Vuex.Store({
     login ({ commit }, user) {
       return new Promise((resolve, reject) => {
         commit('auth_request')
-        this.$http({ url: 'auth/login', data: user, method: 'POST' })
+        axios({ url: 'auth/login', data: user, method: 'POST' })
           .then(res => {
             const token = res.data.token
             const user = res.data.user
             localStorage.setItem('jwt', token)
-            this.$http.defaults.headers.common['x-access-token'] = token
+            axios.defaults.headers.common['x-access-token'] = token
             commit('auth_success', token, user)
             resolve(res)
           })
@@ -49,12 +50,12 @@ export default new Vuex.Store({
     register ({ commit }, user) {
       return new Promise((resolve, reject) => {
         commit('auth_request')
-        this.$http({ url: 'http://localhost:3000/register', data: user, method: 'POST' })
+        axios({ url: 'auth/register', data: user, method: 'POST' })
           .then(res => {
             const token = res.data.token
             const user = res.data.user
             localStorage.setItem('token', token)
-            this.$http.defaults.headers.common['x-access-token'] = token
+            axios.defaults.headers.common['x-access-token'] = token
             commit('auth_success', token, user)
             resolve(res)
           })

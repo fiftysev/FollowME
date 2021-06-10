@@ -49,7 +49,7 @@
 export default {
   name: 'App',
   computed: {
-    isAuth: () => {
+    isAuth () {
       return this.$store.getters.isAuth
     }
   },
@@ -60,6 +60,16 @@ export default {
           this.$router.go(0)
         })
     }
+  },
+  created () {
+    this.$http.interceptors.response.use(undefined, err => {
+      return new Promise((resolve, reject) => {
+        if (err.status === 401 && err.config) {
+          this.$store.dispatch('logout')
+        }
+        throw err
+      })
+    })
   }
 }
 </script>
