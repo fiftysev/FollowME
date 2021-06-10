@@ -43,6 +43,7 @@
         <button
           type="submit"
           class="w-full mt-5 py-2 tracking-widest uppercase font-medium bg-black rounded shadow-md hover:bg-blue-600 hover:shadow-none focus:outline-none"
+          @click.prevent="handleLoginSubmit"
         ><span class="text-white">Войти</span>
         </button>
       </form>
