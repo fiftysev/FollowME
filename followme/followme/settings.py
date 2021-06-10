@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'randomizer',
     'account',
-    'taggit',
     'rest_framework',
     'corsheaders',
     'djoser',
@@ -54,7 +53,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-]
+    ]
 }
 
 DJOSER = {
@@ -101,6 +100,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'followme.wsgi.application'
 
 
+SITE_ID = 1
+AUTH_USER_MODEL = 'account.User'
+ACCOUNT_SIGNUP_FORM_CLASS = 'account.forms.SignupForm'
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
+
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -115,7 +122,6 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
-AUTH_USER_MODEL = 'account.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
