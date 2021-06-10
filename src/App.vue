@@ -61,7 +61,7 @@ export default {
         })
     }
   },
-  mounted () {
+  created () {
     this.$http.interceptors.response.use(undefined, err => {
       return new Promise((resolve, reject) => {
         if (err.status === 401 && err.config) {

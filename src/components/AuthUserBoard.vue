@@ -14,7 +14,7 @@ export default {
   },
   created () {
     const user = this.$store.getters.authedUser
-    this.username = JSON.parse(user).username
+    this.username = user.username
   }
 }
 </script>
