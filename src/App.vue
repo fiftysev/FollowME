@@ -6,14 +6,33 @@
             С Л Е Д У Й З А М Н О Й
           </router-link>
         </h2>
-        <div class="buttons flex ">
+        <div class="buttons flex" v-if="isAuthorized">
+          <router-link tag="a" :to="{name: 'UserBoard'}">
+            <div
+              class="border-2 border-green-600 rounded-lg px-3 py-2 text-green-200 cursor-pointer hover:bg-green-600 hover:text-white font-bold mr-3"
+            >
+              <v-icon style="color: white">mdi-account</v-icon> Профиль
+            </div>
+          </router-link>
+          <div
+            class="border-2 border-red-600 rounded-lg px-3 py-2 text-red-200 cursor-pointer hover:bg-red-600 hover:text-white font-bold"
+            @click="handleLogout"
+          >
+            Выйти
+          </div>
+        </div>
+        <div class="buttons flex" v-else>
           <router-link tag="a" :to="{name: 'LogIn'}">
-            <div class="border-2 border-green-600 rounded-lg px-3 py-2 text-green-400 cursor-pointer hover:bg-green-600 hover:text-green-200 font-bold mr-3">
+            <div
+              class="border-2 border-green-600 rounded-lg px-3 py-2 text-green-200 cursor-pointer hover:bg-green-600 hover:text-white font-bold mr-3"
+            >
               Авторизация
             </div>
           </router-link>
           <router-link tag="a" :to="{name: 'SignUp'}">
-            <div class="border-2 border-blue-600 rounded-lg px-3 py-2 text-blue-400 cursor-pointer hover:bg-blue-600 hover:text-blue-200 font-bold">
+            <div
+              class="border-2 border-blue-600 rounded-lg px-3 py-2 text-blue-200 cursor-pointer hover:bg-blue-600 hover:text-white font-bold"
+            >
               Регистрация
             </div>
           </router-link>
@@ -29,10 +48,18 @@
 
 export default {
   name: 'App',
-
-  data: () => ({
-    //
-  })
+  computed: {
+    isAuthorized: () => {
+      return localStorage.getItem('jwt') != null && localStorage.getItem('user') != null
+    }
+  },
+  methods: {
+    handleLogout () {
+      localStorage.removeItem('jwt')
+      localStorage.removeItem('user')
+      this.$router.go(0)
+    }
+  }
 }
 </script>
 
