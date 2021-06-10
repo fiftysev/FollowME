@@ -1,12 +1,12 @@
 <template>
     <div class="app container--fluid main grid min-h-screen place-items-center">
-      <div class="navbar w-full min-h-navbar pt-4 px-32">
+      <div class="navbar w-full min-h-navbar flex flex-col lg:flex-row pt-4 lg:px-32 items-center justify-between">
         <h2 class="font-bold text-white text-2xl md:text-3xl xl:text-4xl">
           <router-link tag="a" :to="{name: 'Home'}">
             С Л Е Д У Й З А М Н О Й
           </router-link>
         </h2>
-        <div class="buttons flex" v-if="isAuth">
+        <div class="buttons flex flex-col lg:flex-row" v-if="isAuth">
           <router-link tag="a" :to="{name: 'UserBoard'}">
             <div
               class="border-2 border-green-600 rounded-lg px-3 py-2 text-green-200 cursor-pointer hover:bg-green-600 hover:text-white font-bold mr-3"
