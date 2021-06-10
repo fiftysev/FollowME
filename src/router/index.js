@@ -5,6 +5,8 @@ import Home from '../views/Home.vue'
 import CardView from '@/views/CardView'
 import RegistrationForm from '@/components/RegistrationForm'
 import AuthUserBoard from '@/components/AuthUserBoard'
+import LoginForm from '@/components/LoginForm'
+import store from '../store/index'
 
 Vue.use(VueRouter)
 
@@ -35,6 +37,14 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/login',
+    name: 'LogIn',
+    component: LoginForm,
+    meta: {
+      guest: true
+    }
   }
 ]
 
@@ -45,21 +55,12 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (localStorage.getItem('jwt') == null) {
-      next({
-        path: '/signup',
-        params: { nextUrl: to.fullPath }
-      })
-    } else {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isAuth) {
       next()
+      return
     }
-  } else if (to.matched.some(record => record.meta.guest)) {
-    if (localStorage.getItem('jwt') == null) {
-      next()
-    } else {
-      next({ name: 'UserBoard'})
-    }
+    next('/')
   } else {
     next()
   }
