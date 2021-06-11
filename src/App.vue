@@ -24,9 +24,10 @@
             <div
               class="border-2 rounded-lg
                      px-3 py-2 mt-4 lg:my-0 lg:mr-3
-                     hover:text-white font-bold
+                     hover:text-white font-bold text-center
                      cursor-pointer
                      border-green-600 hover:bg-green-600 text-green-200
+                     w-full lg:w-auto
                     "
               @click="button1Handler"
             >
@@ -40,8 +41,9 @@
           <div
             class="border-2  rounded-lg
                    px-3 py-2 mt-4 lg:m-0
-                   hover:text-white font-bold
+                   hover:text-white font-bold text-center
                    cursor-pointer
+                   w-full lg:w-auto
                   "
             :class="{
             'border-red-600 text-red-200 hover:bg-red-600': isAuth,
