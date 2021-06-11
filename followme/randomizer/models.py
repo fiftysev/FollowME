@@ -2,10 +2,11 @@ from django.db import models
 
 
 class Tag(models.Model):
-    tag_name = models.CharField(max_length=30)
+    value = models.CharField(max_length=30, default='tag')
+    text = models.CharField(max_length=30)
 
     def __str__(self):
-        return f'[{self.tag_name}]'
+        return f'[{self.text}]'
 
 
 class Place(models.Model):
@@ -20,4 +21,12 @@ class Place(models.Model):
 
     def __str__(self):
         return f'[{self.name}]'
+
+
+class FavoriteList(models.Model):
+    user = models.ForeignKey('account.User', on_delete=models.CASCADE)
+    favorites = models.ManyToManyField(Place)
+
+    def __str__(self):
+        return f'[{self.user}]'
 

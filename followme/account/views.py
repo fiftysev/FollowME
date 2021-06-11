@@ -1,9 +1,9 @@
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from .models import User
-from .serializers import UserRegistrationSerializer
+from .serializers import UserRegistrationSerializer, UserSerializer
 
 
 class RegistrationUserView(CreateAPIView):
@@ -21,3 +21,8 @@ class RegistrationUserView(CreateAPIView):
         else:
             data = serializer.errors
             return Response(data)
+
+
+class UserListView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

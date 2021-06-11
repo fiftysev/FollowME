@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'account',
     'rest_framework',
     'corsheaders',
+    'taggit',
     'djoser',
     'rest_framework_simplejwt',
 ]

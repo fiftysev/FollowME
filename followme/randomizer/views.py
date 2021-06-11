@@ -1,8 +1,13 @@
 from rest_framework import viewsets, generics
-from .models import Place
-from .serializers import PlaceSerializer
+from .models import Place, FavoriteList
+from .serializers import PlaceSerializer, FavoritesSerializer
 
 
-class PlaceList(generics.ListCreateAPIView):
+class PlaceListView(generics.ListCreateAPIView):
     queryset = Place.objects.all()
     serializer_class = PlaceSerializer
+
+
+class FavoritesTableView(generics.ListCreateAPIView):
+    queryset = FavoriteList.objects.all()
+    serializer_class = FavoritesSerializer
