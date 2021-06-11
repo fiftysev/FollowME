@@ -29,7 +29,7 @@ module.exports = {
         128: '32rem'
       },
       minHeight: {
-        main: '90vh',
+        main: '70vh',
         navbar: '5vh'
       }
     }
