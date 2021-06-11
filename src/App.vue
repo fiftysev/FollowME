@@ -23,7 +23,7 @@
              :class="{'hidden': buttonsHidden, 'flex': !buttonsHidden}">
             <div
               class="border-2 rounded-lg
-                     px-3 py-2 mr-3
+                     px-3 py-2 mt-4 lg:my-0 lg:mr-3
                      hover:text-white font-bold
                      cursor-pointer
                      border-green-600 hover:bg-green-600 text-green-200
