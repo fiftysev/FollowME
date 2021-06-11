@@ -3,7 +3,7 @@
     class="grid min-h-screen place-items-center w-full"
   >
     <div
-      class="w-11/12 p-12 bg-green-400 rounded sm:w-8/12 md:w-1/2 lg:w-5/12"
+      class="w-11/12 p-12 bg-green-400 rounded-2xl sm:w-8/12 md:w-1/2 lg:w-5/12"
     >
       <h1
         class="text-xl font-semibold"
@@ -79,5 +79,10 @@ export default {
 </script>
 
 <style scoped>
-
+  input {
+    @apply rounded-md
+  }
+  button {
+    @apply rounded-lg
+  }
 </style>

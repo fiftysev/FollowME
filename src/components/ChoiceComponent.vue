@@ -1,6 +1,6 @@
 <template>
   <PlaceCardSkeletonLoader v-if="loading"></PlaceCardSkeletonLoader>
-  <div v-else class="card w-64 md:w-96 xl:h-48 xl:w-128 bg-green-400 py-5 rounded-md flex flex-col items-center">
+  <div v-else class="card w-64 md:w-96 xl:w-128 bg-green-400 py-4 xl:py-6 rounded-2xl flex flex-col items-center">
     <select
       name="placepicker"
       id="place"
