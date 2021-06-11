@@ -17,10 +17,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/place/:category',
+    path: '/place',
     name: 'Place',
     component: CardView,
-    props: true
   },
   {
     path: '/signup',

@@ -37,16 +37,9 @@ export default {
       }
     }
   },
-  props: {
-    category: {
-      type: String,
-      default: ''
-    }
-  },
   async created () {
     this.loading = true
-    const response = await fetch(`/place/${this.category}`)
-    this.placeOptions = await response.json()
+    this.placeOptions = await this.$store.getters.lastPlace
     this.loading = false
   }
 }
