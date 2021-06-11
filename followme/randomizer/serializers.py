@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Place, Tag, FavoriteList
+from .models import Place, Tag
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -17,8 +17,3 @@ class PlaceSerializer(serializers.ModelSerializer):
                   'address', 'description', 'station',
                   'rating', 'tags']
 
-
-class FavoritesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FavoriteList
-        fields = ['user', 'place']
