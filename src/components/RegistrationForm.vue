@@ -162,6 +162,8 @@ export default {
   methods: {
     handleRegisterSubmit () {
       const data = {
+        firstname: this.firstName,
+        lastname: this.lastName,
         username: this.username,
         password: this.password
       }

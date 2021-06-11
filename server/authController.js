@@ -1,5 +1,4 @@
-const User = require('./models/user');
-const Role = require('./models/roles');
+const siteUser = require('./models/siteUser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const {validationResult} = require('express-validator');
@@ -19,13 +18,13 @@ class authController{
             if (!errors.isEmpty()){
                 return res.status(400).json({message: 'invalid data', errors});
             }
-            const {username, password} = req.body;
-            const candidate = await User.findOne({username});
+            const {firstname, lastname, username, password} = req.body;
+            const candidate = await siteUser.findOne({username});
             if (candidate) {
                 return res.status(400).json({message: 'Username is already exists'});
             }
             const passwordHash = bcrypt.hashSync(password, 5);
-            const user = new User({username, password: passwordHash});
+            const user = new siteUser({firstname, lastname, username, password: passwordHash});
             await user.save();
             const token = generateToken(user._id);
             return res.status(200).send({auth: true, token: token, user: user});
@@ -38,7 +37,7 @@ class authController{
     async login(req, res) {
         try {
             const {username, password} = req.body;
-            const user = await User.findOne({username});
+            const user = await siteUser.findOne({username});
             if (!user) {
                 return res.status(400).json({message: `user ${username} is doesn't exist`});
             }
