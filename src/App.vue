@@ -6,36 +6,38 @@
             С Л Е Д У Й З А М Н О Й
           </router-link>
         </h2>
-        <div class="buttons flex flex-col lg:flex-row" v-if="isAuth">
-          <router-link tag="a" :to="{name: 'UserBoard'}">
+        <div class="buttons flex flex-col bg-white lg:bg-transparent lg:flex-row"
+             :class="{'hidden': isNeedToHideButtons}">
             <div
-              class="border-2 border-green-600 rounded-lg px-3 py-2 text-green-200 cursor-pointer hover:bg-green-600 hover:text-white font-bold mr-3"
+              class="border-2 rounded-lg
+                     px-3 py-2 mr-3
+                     hover:text-white font-bold
+                     cursor-pointer
+                     border-green-600 hover:bg-green-600 text-green-200
+                    "
+              @click="button1Handler"
             >
-              <v-icon style="color: white">mdi-account</v-icon> Профиль
+              <v-icon v-if="isAuth"
+                      style="color: white"
+              >
+                mdi-account
+              </v-icon>
+              {{button1Text}}
             </div>
-          </router-link>
           <div
-            class="border-2 border-red-600 rounded-lg px-3 py-2 text-red-200 cursor-pointer hover:bg-red-600 hover:text-white font-bold"
-            @click="handleLogout"
+            class="border-2  rounded-lg
+                   px-3 py-2
+                   hover:text-white font-bold
+                   cursor-pointer
+                  "
+            :class="{
+            'border-red-600 text-red-200 hover:bg-red-600': isAuth,
+            'border-blue-600 text-blue-200 hover:bg-blue-600': !isAuth
+            }"
+            @click="button2Handler"
           >
-            Выйти
+            {{button2Text}}
           </div>
-        </div>
-        <div class="buttons flex" v-else>
-          <router-link tag="a" :to="{name: 'LogIn'}">
-            <div
-              class="border-2 border-green-600 rounded-lg px-3 py-2 text-green-200 cursor-pointer hover:bg-green-600 hover:text-white font-bold mr-3"
-            >
-              Авторизация
-            </div>
-          </router-link>
-          <router-link tag="a" :to="{name: 'SignUp'}">
-            <div
-              class="border-2 border-blue-600 rounded-lg px-3 py-2 text-blue-200 cursor-pointer hover:bg-blue-600 hover:text-white font-bold"
-            >
-              Регистрация
-            </div>
-          </router-link>
         </div>
       </div>
       <div class="w-screen grid place-items-center min-h-main">
@@ -48,10 +50,37 @@
 
 export default {
   name: 'App',
+
+  data () {
+    return {
+      buttonsHidden: true
+    }
+  },
   computed: {
     isAuth () {
       return this.$store.getters.isAuth
+    },
+
+    button1Text () {
+      return this.isAuth ? 'Профиль' : 'Авторизация'
+    },
+
+    button2Text () {
+      return this.isAuth ? 'Выйти' : 'Регистрация'
+    },
+
+    button1Handler () {
+      return this.isAuth ? this.handleProfileTransition : this.handleLogin
+    },
+
+    button2Handler () {
+      return this.isAuth ? this.handleLogout : this.handleSignup
+    },
+
+    isNeedToHideButtons () {
+      return this.$vuetify.breakpoint.mdAndDown && this.buttonsHidden
     }
+
   },
   methods: {
     handleLogout () {
@@ -59,7 +88,20 @@ export default {
         .then(() => {
           this.$router.go(-1)
         })
+    },
+
+    handleProfileTransition () {
+      this.$router.push('/userboard')
+    },
+
+    handleLogin () {
+      this.$router.push('/login')
+    },
+
+    handleSignup () {
+      this.$router.push('/signup')
     }
+
   },
   created () {
     this.$http.interceptors.response.use(undefined, err => {
