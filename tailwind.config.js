@@ -5,20 +5,20 @@ module.exports = {
   ],
   theme: {
     screens: {
-      'sm': {
-        'min': '641px'
+      sm: {
+        min: '641px'
       },
-      'md': {
-        'min': '769px'
+      md: {
+        min: '769px'
       },
-      'lg': {
-        'min': '1025px'
+      lg: {
+        min: '1025px'
       },
-      'xl': {
-        'min': '1281px'
+      xl: {
+        min: '1281px'
       },
       '2xl': {
-        'min': '1537px'
+        min: '1537px'
       }
     },
     extend: {
@@ -26,13 +26,13 @@ module.exports = {
         full: '100%'
       },
       width: {
-        '128': '32rem'
+        128: '32rem'
       },
       minHeight: {
         main: '90vh',
         navbar: '5vh'
       }
-    },
+    }
   },
   variants: {},
   plugins: [

@@ -10,7 +10,8 @@ export default new Vuex.Store({
   state: {
     status: '',
     token: '',
-    user: {}
+    user: {},
+    place: {}
   },
   mutations: {
     auth_request (state) {
@@ -29,6 +30,16 @@ export default new Vuex.Store({
     logout (state) {
       state.status = ''
       state.token = ''
+    },
+    place_request (state) {
+      state.status = 'loading'
+    },
+    place_generate_success (state, place) {
+      state.status = 'success'
+      state.place = place
+    },
+    place_generate_error (state) {
+      state.status = 'error'
     }
   },
   actions: {
@@ -63,7 +74,7 @@ export default new Vuex.Store({
             resolve(res)
           })
           .catch(err => {
-            commit('auth_error', err)
+            commit('auth_error')
             reject(err)
           })
       })
@@ -74,11 +85,27 @@ export default new Vuex.Store({
         delete axios.defaults.headers.common['x-access-token']
         resolve()
       })
+    },
+    getPlace ({ commit }, category) {
+      return new Promise((resolve, reject) => {
+        commit('place_request')
+        axios(`/place/${category}`)
+          .then(res => {
+            const place = res.data
+            commit('place_generate_success', place)
+            resolve(res)
+          })
+          .catch(err => {
+            commit('place_generate_error')
+            reject(err)
+          })
+      })
     }
   },
   getters: {
     isAuth: state => !!state.token,
     authStatus: state => state.status,
-    authedUser: state => state.user
+    authedUser: state => state.user,
+    lastPlace: state => state.place
   }
 })

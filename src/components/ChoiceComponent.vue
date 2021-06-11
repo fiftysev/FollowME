@@ -60,19 +60,24 @@ export default {
     }
   },
   methods: {
-    handleSearch () {
+    async handleSearch () {
       if (!this.selected) {
         this.snackbar = true
         return
       }
-      this.$router.push(`/place/${this.selected}`)
+      await this.$store.dispatch('getPlace', this.selected)
+        .then(() => this.$router.push('/place'))
+        .catch(e => console.log(e))
       this.selected = null
       this.snackbar = false
     }
   },
   async created () {
-    const response = await fetch('/api/categories')
-    this.options = await response.json()
+    await this.$http.get('/api/categories')
+      .then(res => {
+        this.options = res.data
+      })
+      .catch(e => console.log(e))
   }
 }
 </script>
