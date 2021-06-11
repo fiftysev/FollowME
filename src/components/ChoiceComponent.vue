@@ -15,25 +15,11 @@
       </option>
     </select>
     <v-btn
-      v-if="selected"
       class="w-2/3 mt-4 xl:mt-10 px-3 font-bold"
       style="color: white; background: #5381b8"
+      @click="handleSearch"
     >
-      <router-link
-        tag="a"
-        :to="{name: 'Place', params: {category: selected}}"
-      >
         Начать поиск
-      </router-link>
-    </v-btn>
-
-    <v-btn
-      v-else
-      @click="snackbar = true"
-      class="w-2/3 mt-4 xl:mt-10 px-3 font-bold"
-      style="color: white; background: #5381b8"
-    >
-      Начать поиск
     </v-btn>
 
     <v-snackbar
@@ -73,7 +59,17 @@ export default {
       button_disabled: false
     }
   },
-
+  methods: {
+    handleSearch () {
+      if (!this.selected) {
+        this.snackbar = true
+        return
+      }
+      this.$router.push(`/place/${this.selected}`)
+      this.selected = null
+      this.snackbar = false
+    }
+  },
   async created () {
     const response = await fetch('/api/categories')
     this.options = await response.json()
