@@ -26,6 +26,10 @@
           autocomplete="username"
           class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
           required />
+        <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.username.required">Обязательное поле</label>
+        <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.username.alphaNum">используйте латиницу и цифры</label>
+        <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.username.minLength">Длина должна быть больше 8 символов</label>
+        <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.username.maxLength">Длина должна быть меньше 16 символов</label>
         <label
           for="password"
           class="block mt-2 text-xs font-semibold text-gray-600 uppercase"
@@ -40,6 +44,10 @@
           autocomplete="new-password"
           class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
           required />
+        <label for="password" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.password.required">Обязательное поле</label>
+        <label for="password" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.password.alphaNum">используйте латиницу и цифры</label>
+        <label for="password" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.password.minLength">Длина должна быть больше 8 символов</label>
+        <label for="password" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.password.maxLength">Длина должна быть меньше 16 символов</label>
         <button
           type="submit"
           class="w-full mt-5 py-2 tracking-widest uppercase font-medium bg-black rounded shadow-md hover:bg-blue-600 hover:shadow-none focus:outline-none"
@@ -52,12 +60,29 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required, alphaNum, minLength, maxLength } from 'vuelidate/lib/validators'
 export default {
   name: 'LoginForm',
+  mixins: [validationMixin],
   props: {
     nextUrl: {
       type: String,
       default: ''
+    }
+  },
+  validations: {
+    username: {
+      required,
+      minLength: minLength(8),
+      maxLength: maxLength(16),
+      alphaNum
+    },
+    password: {
+      required,
+      minLength: minLength(8),
+      maxLength: maxLength(16),
+      alphaNum
     }
   },
   data () {
