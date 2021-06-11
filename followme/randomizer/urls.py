@@ -1,8 +1,14 @@
-from django.urls import path
-from .views import PlaceListView
+from django.conf.urls import url
+from django.urls import path, include
+from .views import PlaceView, PlaceView
+from rest_framework import routers
 
+router = routers.DefaultRouter()
+router.register(r'', PlaceView)
 
 urlpatterns = [
-    path('get_places/', PlaceListView.as_view(), name='get_places'),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
+
 
