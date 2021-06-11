@@ -1,5 +1,6 @@
 <template>
-  <div class="card w-64 md:w-96 xl:h-48 xl:w-128 bg-green-400 py-5 rounded-md flex flex-col items-center">
+  <PlaceCardSkeletonLoader v-if="loading"></PlaceCardSkeletonLoader>
+  <div v-else class="card w-64 md:w-96 xl:h-48 xl:w-128 bg-green-400 py-5 rounded-md flex flex-col items-center">
     <select
       name="placepicker"
       id="place"
@@ -45,10 +46,14 @@
 </template>
 
 <script>
+import PlaceCardSkeletonLoader from '@/components/PlaceCardSkeletonLoader'
+
 export default {
+  components: { PlaceCardSkeletonLoader },
   name: 'ChoiceComponent',
   data () {
     return {
+      loading: false,
       selected: null,
       options: [
         { id: 1, value: 'bar', text: 'Бары' }
@@ -65,9 +70,11 @@ export default {
         this.snackbar = true
         return
       }
+      this.loading = true
       await this.$store.dispatch('getPlace', this.selected)
         .then(() => this.$router.push('/place'))
         .catch(e => console.log(e))
+      this.loading = false
       this.selected = null
       this.snackbar = false
     }

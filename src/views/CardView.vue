@@ -1,11 +1,6 @@
 <template>
   <div class="w-4/5 place flex justify-center py-12 mb-12">
-    <PlaceCardSkeletonLoader
-      v-if="loading"
-    >
-    </PlaceCardSkeletonLoader>
     <PlaceCard
-      v-else
       :title="placeOptions.title"
       :address="placeOptions.address"
       :description="placeOptions.description"
@@ -19,10 +14,9 @@
 
 <script>
 import PlaceCard from '@/components/PlaceCard'
-import PlaceCardSkeletonLoader from '@/components/PlaceCardSkeletonLoader'
 export default {
   name: 'CardView',
-  components: { PlaceCard, PlaceCardSkeletonLoader },
+  components: { PlaceCard },
   data () {
     return {
       loading: true,
