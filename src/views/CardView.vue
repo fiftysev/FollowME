@@ -1,5 +1,5 @@
 <template>
-  <div class="w-4/5 place flex justify-center py-12">
+  <div class="w-4/5 place flex justify-center py-12 mb-12">
     <PlaceCardSkeletonLoader
       v-if="loading"
     >
