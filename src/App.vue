@@ -55,7 +55,7 @@
           </div>
         </div>
       </div>
-      <div class="w-screen grid place-items-center min-h-main">
+      <div class="grid place-items-center w-screen min-h-main lg:min-h-screen">
         <router-view></router-view>
       </div>
     </div>
