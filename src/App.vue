@@ -1,13 +1,26 @@
 <template>
     <div class="app container--fluid main grid min-h-screen place-items-center">
       <div class="navbar w-full min-h-navbar flex flex-col lg:flex-row pt-4 lg:px-32 items-center justify-between">
-        <h2 class="font-bold text-white text-2xl md:text-3xl xl:text-4xl">
-          <router-link tag="a" :to="{name: 'Home'}">
-            С Л Е Д У Й З А М Н О Й
-          </router-link>
-        </h2>
-        <div class="buttons flex flex-col bg-white lg:bg-transparent lg:flex-row"
-             :class="{'hidden': isNeedToHideButtons}">
+        <div class="flex flex-row">
+          <h2 class="font-bold text-white text-xl md:text-3xl xl:text-4xl pr-2 lg:p-0">
+            <router-link tag="a" :to="{name: 'Home'}">
+              С Л Е Д У Й З А М Н О Й
+            </router-link>
+          </h2>
+          <div class="button lg:hidden"
+               @click="buttonsHidden = !buttonsHidden"
+          >
+            <v-icon
+                 class="text-green-600 w-full h-full"
+                 size="24"
+                 style="color: mediumseagreen"
+            >
+              {{getArrowDirection}}
+            </v-icon>
+          </div>
+        </div>
+        <div class="buttons flex-col items-center lg:flex-row lg:flex"
+             :class="{'hidden': buttonsHidden, 'flex': !buttonsHidden}">
             <div
               class="border-2 rounded-lg
                      px-3 py-2 mr-3
@@ -22,11 +35,11 @@
               >
                 mdi-account
               </v-icon>
-              {{button1Text}}
+              {{ getButton1Text }}
             </div>
           <div
             class="border-2  rounded-lg
-                   px-3 py-2
+                   px-3 py-2 mt-4 lg:m-0
                    hover:text-white font-bold
                    cursor-pointer
                   "
@@ -36,7 +49,7 @@
             }"
             @click="button2Handler"
           >
-            {{button2Text}}
+            {{ getButton2Text }}
           </div>
         </div>
       </div>
@@ -61,11 +74,11 @@ export default {
       return this.$store.getters.isAuth
     },
 
-    button1Text () {
+    getButton1Text () {
       return this.isAuth ? 'Профиль' : 'Авторизация'
     },
 
-    button2Text () {
+    getButton2Text () {
       return this.isAuth ? 'Выйти' : 'Регистрация'
     },
 
@@ -77,8 +90,8 @@ export default {
       return this.isAuth ? this.handleLogout : this.handleSignup
     },
 
-    isNeedToHideButtons () {
-      return this.$vuetify.breakpoint.mdAndDown && this.buttonsHidden
+    getArrowDirection () {
+      return this.buttonsHidden ? 'mdi-arrow-down-drop-circle-outline' : 'mdi-arrow-up-drop-circle-outline'
     }
 
   },
@@ -101,7 +114,6 @@ export default {
     handleSignup () {
       this.$router.push('/signup')
     }
-
   },
   created () {
     this.$http.interceptors.response.use(undefined, err => {
