@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  plugins: [createPersistedState()],
   state: {
     status: '',
     token: '',
@@ -37,7 +39,6 @@ export default new Vuex.Store({
           .then(res => {
             const token = res.data.token
             const user = res.data.user
-            localStorage.setItem('token', token)
             axios.defaults.headers.common['x-access-token'] = token
             commit('auth_success', token)
             commit('user_success', user)
@@ -45,7 +46,6 @@ export default new Vuex.Store({
           })
           .catch(err => {
             commit('auth_error')
-            localStorage.removeItem('token')
             reject(err)
           })
       })
@@ -57,7 +57,6 @@ export default new Vuex.Store({
           .then(res => {
             const token = res.data.token
             const user = res.data.user
-            localStorage.setItem('token', token)
             axios.defaults.headers.common['x-access-token'] = token
             commit('auth_success', token)
             commit('user_success', user)
@@ -65,7 +64,6 @@ export default new Vuex.Store({
           })
           .catch(err => {
             commit('auth_error', err)
-            localStorage.removeItem('token')
             reject(err)
           })
       })
@@ -73,7 +71,6 @@ export default new Vuex.Store({
     logout ({ commit }) {
       return new Promise((resolve, reject) => {
         commit('logout')
-        localStorage.removeItem('token')
         delete axios.defaults.headers.common['x-access-token']
         resolve()
       })
