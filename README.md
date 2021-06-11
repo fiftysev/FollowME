@@ -15,7 +15,7 @@ npm run serve
 ### Для тестирования "как на продакшн" через Express
 ```
 npm run build
-nodemon testServer.js
+nodemon server/app.js
 ```
 
 ### Если хотите, чтоб на вас наорали и унизили
