@@ -44,11 +44,10 @@
         <!--Тут наверное немного костыльно, хотя это единственное, что работает из того, что пробовал-->
         <span
           v-for="tag in tags"
-          v-bind:key="tag.tag"
-          :style="{background: tag.color}"
-          class="m-4 p-2 rounded"
+          v-bind:key="tag"
+          class="m-4 py-3 px-4 w-24 sm:w-36 text-center rounded-full bg-green-300 capitalize"
         >
-          {{tag.tag}}
+          {{tag}}
         </span>
       </div>
     </div>
