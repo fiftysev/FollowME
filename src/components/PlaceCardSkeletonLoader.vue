@@ -1,5 +1,5 @@
 <template>
-  <div class="container shadow-md
+  <div class="w-2/3 shadow-md
               flex flex-col lg:flex-row justify-between
               bg-white rounded-2xl ">
 
