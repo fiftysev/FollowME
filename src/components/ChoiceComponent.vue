@@ -15,13 +15,13 @@
         {{option.text}}
       </option>
     </select>
-    <v-btn
-      class="w-2/3 mt-4 xl:mt-10 px-3 font-bold"
-      style="color: white; background: #5381b8"
+    <button
+      class="button w-2/3 mt-4 xl:mt-6 py-2 px-3 font-bold text-white rounded-lg"
+      style="background: #5381b8"
       @click="handleSearch"
     >
         Начать поиск
-    </v-btn>
+    </button>
 
     <v-snackbar
       v-model="snackbar"
