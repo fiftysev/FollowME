@@ -27,7 +27,7 @@ let place = {
     bus_station: 'Калина Молл',
     rating: 4.8,
     tags: [{'tag': 'cafe', 'color': '#1EC9E8'}, {'tag': 'lounge', 'color': '#00CF91'}],
-    image: 'https://static.vl.ru/catalog/1482713713154_big_vlru.jpg'
+    photo: 'https://static.vl.ru/catalog/1482713713154_big_vlru.jpg'
 }
 
 app.get('/api/categories', (req, res) => {
@@ -40,11 +40,11 @@ app.get('/place/:category', (req, res) => {
         3000)
 });
 
-// app.use('/', express.static(path.resolve(__dirname, '../dist')));
-//
-// app.get('*', (req, res) => {
-//     res.send(path.resolve(__dirname, '../dist', 'index.html'))
-// })
+app.use('/', express.static(path.resolve(__dirname, '../dist')));
+
+app.get('*', (req, res) => {
+    res.send(path.resolve(__dirname, '../dist', 'index.html'))
+})
 
 const start = async () => {
     try {

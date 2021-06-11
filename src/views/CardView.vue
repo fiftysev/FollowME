@@ -11,7 +11,7 @@
       :description="placeOptions.description"
       :tags="placeOptions.tags"
       :bus_station="placeOptions.bus_station"
-      :image="placeOptions.image"
+      :photo="placeOptions.photo"
       :rating="placeOptions.rating"
     />
   </div>
@@ -33,7 +33,7 @@ export default {
         bus_station: 'bar',
         rating: null,
         tags: [],
-        image: ''
+        photo: ''
       }
     }
   },

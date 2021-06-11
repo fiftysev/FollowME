@@ -9,7 +9,7 @@
 
     <div class="lg:w-1/2 pt-4 lg:p-8 flex flex-col justify-around text-center">
       <img
-          :src="image"
+          :src="photo"
           alt=""
           class="rounded-2xl object-cover self-center
                   w-11/12"
@@ -65,7 +65,7 @@ export default {
       type: String,
       default: 'ДВФУ'
     },
-    image: {
+    photo: {
       type: String,
       default: 'unsplash.com'
     },
