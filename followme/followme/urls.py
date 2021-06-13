@@ -20,8 +20,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_auth')),
-    # path('account/', include('account.urls')),
-    path('places/', include('randomizer.urls')),
+    path('followme/', include('randomizer.urls')),
     path('api-token-auth/', obtain_jwt_token),
     path('auth/', include('djoser.urls')),
 ]
