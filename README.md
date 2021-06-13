@@ -12,10 +12,13 @@ URLS
 >api-auth/  
 
 Создание нового пользователя DRF
->account/registration/
+>followme/registration/
 
 Авторизация с JWT
 >api-token-auth/ 
 
 Просмотр списка пользователей DRF
->auth/users/
+>followme/userlist/
+
+Просмотр списка мест DRF
+>followme/places/
