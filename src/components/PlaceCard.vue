@@ -7,7 +7,7 @@
               rounded-2xl sm:text-center
               sm:text-xl md:text-2xl lg:text-xl xl:text-xl 2xl:text-2xl">
 
-    <div class="lg:w-1/2 pt-4 lg:p-8 flex flex-col justify-around text-center">
+    <div class="lg:w-1/2 pt-4 lg:p-4 flex flex-col justify-around text-center">
       <img
           :src="photo"
           alt=""
@@ -16,24 +16,21 @@
       >
       <h3 class="text-2xl md:text-3xl self-center lg:hidden py-4">{{title}}</h3>
       <hr class="lg:hidden">
-      <span class="py-4">{{address}}</span>
-      <hr>
-      <span class="py-4">{{bus_station}}</span>
-      <hr>
+      <span class="py-2 mt-2"><i class="fas fa-map-marked-alt"></i> {{address}}</span>
+      <span class="py-2"><i class="fas fa-bus"></i> {{bus_station}}</span>
     </div>
 
     <div class="lg:w-1/2 flex flex-col justify-around lg:p-8 text-center lg:text-left">
-      <div class="container lg:flex lg:justify-between">
+      <div class="container">
 
         <h3 class="lg:text-4xl xl:text-5xl 2xl:text-5xl
-                   self-center
-                   hidden lg:inline-block"
+                   self-center lg:block hidden"
         >{{title}}</h3>
 
         <!-- Здесь попытался подтянуть к рейтинг-компоненту значения из запроса, не получилось-->
         <rating
           :rating_value="rating"
-          class="self-center py-4 lg:p-0 lg:scale-200"
+          class="self-center py-4 lg:p-0 lg:-ml-3"
         ></rating>
 
       </div>
@@ -45,7 +42,7 @@
         <span
           v-for="tag in tags"
           v-bind:key="tag"
-          class="m-4 py-3 px-4 w-24 sm:w-36 text-center rounded-full bg-green-300 capitalize"
+          class="m-4 py-1 px-4 text-center rounded-lg bg-green-300 capitalize"
         >
           {{tag}}
         </span>

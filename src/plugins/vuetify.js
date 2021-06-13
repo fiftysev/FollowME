@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib/framework'
+import '@fortawesome/fontawesome-free/css/all.css'
 
 Vue.use(Vuetify)
 
@@ -12,5 +13,8 @@ export default new Vuetify({
       xl: 1281,
       '2xl': 1537
     }
+  },
+  icons: {
+    iconfont: 'fa'
   }
 })
