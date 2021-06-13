@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'randomizer',
-    'account',
     'rest_framework',
     'corsheaders',
     'taggit',
@@ -102,8 +101,8 @@ WSGI_APPLICATION = 'followme.wsgi.application'
 
 
 SITE_ID = 1
-AUTH_USER_MODEL = 'account.User'
-ACCOUNT_SIGNUP_FORM_CLASS = 'account.forms.SignupForm'
+AUTH_USER_MODEL = 'randomizer.User'
+ACCOUNT_SIGNUP_FORM_CLASS = 'randomizer.forms.SignupForm'
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_USERNAME_REQUIRED = True

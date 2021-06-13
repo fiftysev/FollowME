@@ -12,4 +12,3 @@ class SignupForm(forms.ModelForm):
         user.last_name = self.cleaned_data['last_name']
         user.username = self.cleaned_data['username']
         user.save()
-
