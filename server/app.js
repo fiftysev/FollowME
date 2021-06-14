@@ -27,7 +27,7 @@ let place = {
     bus_station: 'Калина Молл',
     rating: 4.8,
     tags: ['кафе', 'лаундж'],
-    photo: 'https://static.vl.ru/catalog/1482713713154_big_vlru.jpg'
+    photo: 'https://res.cloudinary.com/glovoapp/w_1200,f_auto,q_auto/Stores/wqqzd0povgbjdu30jlx0'
 }
 
 app.get('/api/categories', (req, res) => {

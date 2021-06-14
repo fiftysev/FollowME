@@ -7,7 +7,7 @@
               rounded-2xl sm:text-center
               sm:text-xl md:text-2xl lg:text-xl xl:text-xl 2xl:text-2xl">
 
-    <div class="lg:w-1/2 pt-4 lg:p-8 flex flex-col justify-around text-center">
+    <div class="lg:w-1/2 pt-4 lg:p-4 flex flex-col justify-around text-center">
       <img
           :src="photo"
           alt=""
@@ -16,16 +16,14 @@
       >
       <h3 class="text-2xl md:text-3xl self-center lg:hidden py-4">{{title}}</h3>
       <hr class="lg:hidden">
-      <span class="py-4">{{address}}</span>
-      <hr>
-      <span class="py-4">{{bus_station}}</span>
-      <hr>
+      <span class="py-2 mt-2"><i class="fas fa-map-marked-alt"></i> {{address}}</span>
+      <span class="py-2"><i class="fas fa-bus"></i> {{bus_station}}</span>
     </div>
 
     <div class="lg:w-1/2 flex flex-col justify-around lg:p-8 text-center items-center">
 
       <h3 class="lg:text-4xl xl:text-4xl 2xl:text-5xl
-                 hidden lg:inline-block"
+                 hidden lg:block"
       >{{title}}</h3>
 
       <hr>
@@ -35,10 +33,11 @@
         class="py-4 lg:p-0"
       ></rating>
 
+      </div>
       <hr>
-      <p class="py-4 lg:p-0 w-2/3 lg:w-full self-center text-center">{{description}}</p>
+      <p class="py-4 lg:p-0 w-2/3 lg:w-full self-center lg:self-start">{{description}}</p>
       <hr>
-      <div class="container flex py-4 lg:p-0 self-center justify-center">
+      <div class="container flex py-4 lg:p-0 justify-center lg:justify-start">
         <!--Тут наверное немного костыльно, хотя это единственное, что работает из того, что пробовал-->
         <span
           v-for="tag in tags"
@@ -91,7 +90,5 @@ export default {
 </script>
 
 <style scoped>
-  hr {
-    @apply w-full
-  }
+
 </style>
