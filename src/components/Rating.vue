@@ -1,7 +1,6 @@
 <template>
     <v-rating
       v-model="userRating"
-      color="warning"
       half-increments
       hover
       length="5"

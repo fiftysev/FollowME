@@ -26,18 +26,15 @@
                  hidden lg:block"
       >{{title}}</h3>
 
-      <hr>
-
       <rating
         :rating_value="rating"
         class="py-4 lg:p-0"
       ></rating>
 
-      </div>
       <hr>
-      <p class="py-4 lg:p-0 w-2/3 lg:w-full self-center lg:self-start">{{description}}</p>
+      <p class="py-4 lg:p-0 w-2/3 lg:w-full self-center">{{description}}</p>
       <hr>
-      <div class="container flex py-4 lg:p-0 justify-center lg:justify-start">
+      <div class="container flex py-4 lg:p-0 justify-center">
         <!--Тут наверное немного костыльно, хотя это единственное, что работает из того, что пробовал-->
         <span
           v-for="tag in tags"
@@ -90,5 +87,7 @@ export default {
 </script>
 
 <style scoped>
-
+  hr {
+    @apply w-full;
+  }
 </style>
