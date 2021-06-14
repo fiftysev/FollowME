@@ -4,11 +4,11 @@ from .views import PlaceView, RegistrationUserView, UserListView
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'', PlaceView)
+router.register(r'place', PlaceView)
+router.register(r'user', UserListView)
 
 urlpatterns = [
-    path('places/', include(router.urls)),
+    path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('registration/', RegistrationUserView.as_view(), name='registration'),
-    path('userlist/', UserListView.as_view(), name='UserList')
 ]

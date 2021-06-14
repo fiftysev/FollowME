@@ -1,6 +1,6 @@
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
-from .models import Place, Tag, User
+from .models import Place, Tag, User, UserPlace
 
 
 class TagSerializer(serializers.HyperlinkedModelSerializer):
@@ -11,7 +11,6 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
 
 class PlaceSerializer(serializers.HyperlinkedModelSerializer):
     tags = TagSerializer(many=True)
-    # other_photos = serializers.ListSerializer(many=True)
 
     class Meta:
         model = Place
@@ -22,13 +21,13 @@ class PlaceSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(style={'input_type': 'password'})
-    # password = serializers.CharField(style={'input_type': 'password'})
+    password = serializers.CharField(style={'input_type': 'password'})
 
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username',
                   'password', 'confirm_password']
-        # extra_kwargs = {'password': {'write_only': True}}
+        extra_kwargs = {'password': {'write_only': True}}
         read_only_fields = ['is_active', 'is_staff']
 
     def create(self, *args, **kwargs):
@@ -46,10 +45,16 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         return user
 
 
+class FavoritesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserPlace
+        fields = ['place', 'rating']
+
+
 class UserSerializer(serializers.ModelSerializer):
     # favorites = FavoritesSerializer(many=True)
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username']
+        fields = ['id', 'first_name', 'last_name', 'username']
         # need to add favorites field

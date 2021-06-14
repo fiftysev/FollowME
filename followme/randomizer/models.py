@@ -1,5 +1,6 @@
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
@@ -8,7 +9,7 @@ class Tag(models.Model):
     value = models.CharField(max_length=30, default=text)
 
     def __str__(self):
-        return f'[{self.value}]'
+        return f'{self.value}'
 
 
 class Place(models.Model):
@@ -22,7 +23,19 @@ class Place(models.Model):
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):
-        return f'[{self.name}]'
+        return f'{self.name}'
+
+
+class UserPlace(models.Model):
+    user = models.ForeignKey('randomizer.User', on_delete=models.CASCADE)
+    place = models.ForeignKey('randomizer.Place', on_delete=models.CASCADE)
+    rating = models.FloatField(default=0, validators=[
+        MaxValueValidator(5),
+        MinValueValidator(0),
+    ])
+
+    def __str__(self):
+        return f'{self.user.username} -> {self.place.name} = {self.rating}'
 
 
 class UserManager(BaseUserManager):
@@ -55,11 +68,10 @@ class User(AbstractUser):
     id = models.AutoField(primary_key=True, unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    username = models.CharField(max_length=50, unique=True)
+    username = models.CharField(max_length=16, unique=True)
     email = models.CharField(max_length=100, blank=True, unique=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    # favorites = models.ManyToManyField(Place)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['first_name', 'last_name']

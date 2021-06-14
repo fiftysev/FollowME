@@ -29,6 +29,6 @@ class RegistrationUserView(CreateAPIView):
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserListView(generics.ListCreateAPIView):
+class UserListView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
