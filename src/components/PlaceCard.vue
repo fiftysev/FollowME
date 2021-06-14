@@ -22,25 +22,23 @@
       <hr>
     </div>
 
-    <div class="lg:w-1/2 flex flex-col justify-around lg:p-8 text-center lg:text-left">
-      <div class="container lg:flex lg:justify-between">
+    <div class="lg:w-1/2 flex flex-col justify-around lg:p-8 text-center items-center">
 
-        <h3 class="lg:text-4xl xl:text-5xl 2xl:text-5xl
-                   self-center
-                   hidden lg:inline-block"
-        >{{title}}</h3>
+      <h3 class="lg:text-4xl xl:text-4xl 2xl:text-5xl
+                 hidden lg:inline-block"
+      >{{title}}</h3>
 
-        <!-- Здесь попытался подтянуть к рейтинг-компоненту значения из запроса, не получилось-->
-        <rating
-          :rating_value="rating"
-          class="self-center py-4 lg:p-0 lg:scale-200"
-        ></rating>
-
-      </div>
       <hr>
-      <p class="py-4 lg:p-0 w-2/3 lg:w-full self-center lg:self-start">{{description}}</p>
+
+      <rating
+        :rating_value="rating"
+        class="py-4 lg:p-0"
+      ></rating>
+
       <hr>
-      <div class="container flex py-4 lg:p-0 justify-center lg:justify-start">
+      <p class="py-4 lg:p-0 w-2/3 lg:w-full self-center text-center">{{description}}</p>
+      <hr>
+      <div class="container flex py-4 lg:p-0 self-center justify-center">
         <!--Тут наверное немного костыльно, хотя это единственное, что работает из того, что пробовал-->
         <span
           v-for="tag in tags"
@@ -93,5 +91,7 @@ export default {
 </script>
 
 <style scoped>
-
+  hr {
+    @apply w-full
+  }
 </style>

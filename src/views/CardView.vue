@@ -1,5 +1,5 @@
 <template>
-  <div class="w-2/3 place flex justify-center py-12 mb-12">
+  <div class="w-5/6 lg:w-2/3 place flex justify-center py-12 mb-12">
     <PlaceCard
       :title="placeOptions.title"
       :address="placeOptions.address"
