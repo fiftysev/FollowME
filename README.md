@@ -18,7 +18,13 @@ URLS
 >api-token-auth/ 
 
 Просмотр списка пользователей DRF
->followme/userlist/
+>followme/user/
+
+Взять пользователя по ID
+>followme/user/{id}
 
 Просмотр списка мест DRF
->followme/places/
+>followme/place/
+
+Взять место по ID
+>followme/place/{id}
