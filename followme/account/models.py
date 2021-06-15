@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import (AbstractUser,
                                         BaseUserManager)
 
-# from followme.randomizer.models import Place
+from randomizer.models import Place
 
 
 class UserManager(BaseUserManager):
@@ -30,6 +30,12 @@ class UserManager(BaseUserManager):
     def create_superuser(self, username, password, first_name='admin', last_name='admin'):
         return self._create_user(first_name, last_name, username, password, is_staff=True, is_superuser=True)
 
+    # def add_to_favorites(self, place):
+    #     return self.favorites.add(place)
+    #
+    # def delete_from_favorites(self, place):
+    #     return self.favorites.remove(place)
+
 
 class User(AbstractUser):
     id = models.AutoField(primary_key=True, unique=True)
@@ -39,7 +45,7 @@ class User(AbstractUser):
     email = models.CharField(max_length=100, blank=True, unique=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    # favorites = models.ManyToManyField(Place)
+    favorites = models.ManyToManyField(Place)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['first_name', 'last_name']

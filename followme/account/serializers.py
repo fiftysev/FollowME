@@ -1,13 +1,13 @@
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 from .models import User
-# from followme.randomizer.models import Place
+from randomizer.models import Place
 
 
-# class FavoritesSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Place
-#         fields = ['name', 'photo']
+class FavoritesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Place
+        fields = ['name', 'rating', 'photo']
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -37,9 +37,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    # favorites = FavoritesSerializer(many=True)
+    favorites = FavoritesSerializer(many=True)
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username']
-        # need to add favorites field
+        fields = ['first_name', 'last_name', 'username', 'favorites']
