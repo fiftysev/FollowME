@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94da451f-ef58-4ee5-976e-782b9ebf0e6e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/followme/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/followme/account/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/followme/account/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/followme/account/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/followme/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/followme/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/followme/followme/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/followme/followme/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +29,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
   </component>
   <component name="RunManager" selected="Django Server.Server">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -99,7 +96,7 @@
       <workItem from="1623287029746" duration="191000" />
       <workItem from="1623287227237" duration="6792000" />
       <workItem from="1623386405572" duration="12180000" />
-      <workItem from="1623710013678" duration="6977000" />
+      <workItem from="1623710013678" duration="8661000" />
     </task>
     <servers />
   </component>
