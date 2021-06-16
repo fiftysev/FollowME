@@ -48,3 +48,7 @@ def verify_password(plain_password, hashed_password):
 
 def get_password_hash(password):
     return pwd_context.hash(password)
+
+
+def get_place(db: Session, tag: str):
+    return db.query(models.Place).filter(models.Place.tag == tag).random()

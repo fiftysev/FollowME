@@ -33,3 +33,11 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     if db_user:
         raise HTTPException(status_code=400, detail="Username already registered")
     return crud.create_user(db=db, user=user)
+
+
+@app.get("/place/{tag}/")
+def get_place(tag: str, db: Session = Depends(get_db)):
+    db_place = crud.get_place(db, tag=tag)
+    if db_place is None:
+        raise HTTPException(status_code=404, detail="Tag not found")
+    return db_place
