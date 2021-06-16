@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class TagBase(BaseModel):
@@ -35,7 +35,7 @@ class PlaceCreate(PlaceBase):
 
 class Place(PlaceBase):
     id: int
-    categories: List[Tag] = []
+    tags: List[Tag] = []
 
     class Config:
         orm_model = True
@@ -57,3 +57,12 @@ class User(UserBase):
 
     class Config:
         orm_model = True
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    username: Optional[str] = None
