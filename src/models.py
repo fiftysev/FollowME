@@ -16,9 +16,20 @@ class User(Base):
 
 class Place(Base):
     __tablename__ = "places"
+    id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
     description = Column(String)
     station = Column(String)
     address = Column(String)
-    rating = Column(Float)
+    rating_sum = Column(Float)
+    count_of_rate = Column(Integer)
+    rate = Column(Float)
     photo = Column(String)
+
+    categories = relationship('Tag')
+
+class Tag(Base):
+    __tablename__ = "tags"
+    id = Column(Integer, primary_key=True, index=True)
+    value = Column(String)
+    text = Column(String)
