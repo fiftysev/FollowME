@@ -15,6 +15,8 @@ class GeneratorController {
         description,
         bus_station,
         rating,
+        rates_count,
+        sum_of_rating,
         tags,
         photo
       } = req.body;
@@ -24,6 +26,8 @@ class GeneratorController {
         description,
         bus_station,
         rating,
+        rates_count,
+        sum_of_rating,
         tags,
         photo
       });

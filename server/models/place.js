@@ -6,8 +6,8 @@ const place = new Schema({
   description: {type: String, required: true},
   bus_station: {type: String},
   rating: {type: Number, required: true},
-  rates_count: {type: Number},
-  sum_of_rating: {type: Number},
+  rates_count: {type: Number, default: 0},
+  sum_of_rating: {type: Number, default: 0},
   tags: [String],
   photo: [String],
 })
