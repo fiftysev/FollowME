@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path');
 const mongoose = require('mongoose')
 const authRouter = require('./authRouter')
+const generatorRouter = require('./generatorRouter')
 const cors = require('cors')
 const PORT = process.env.PORT || 3000;
 
@@ -9,6 +10,7 @@ const app = express();
 
 app.use(express.json());
 app.use('/auth', authRouter)
+app.use('/generator', generatorRouter)
 app.use(cors())
 
 let CATEGORIES = [
