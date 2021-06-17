@@ -34,3 +34,6 @@ class Tag(Base):
     id = Column(Integer, primary_key=True, index=True)
     value = Column(String)
     text = Column(String)
+
+
+

@@ -66,3 +66,10 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username: Optional[str] = None
+
+
+class AuthModel(BaseModel):
+    username: str
+    first_name: str
+    last_name: str
+    password: str
