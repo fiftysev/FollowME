@@ -1,3 +1,4 @@
+from deta import Deta
 from fastapi import FastAPI, Depends, HTTPException, Security
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, OAuth2PasswordBearer
 from .auth import Auth
@@ -7,8 +8,7 @@ from sqlalchemy.orm import Session
 from . import schemas, crud, models, database
 
 
-deta = database
-
+deta = Deta("c04fkipu_emGgP1bWxRisPxxQQrTfnfkEPSazUAjg")
 users_db = deta.Base('users')
 
 
@@ -49,14 +49,14 @@ def get_place(tag: str, db: Session = Depends(get_db)):
 def signup(user_details: schemas.AuthModel):
     if users_db.get(user_details.username) is not None:
         return 'Account already exists'
-    # try:
-    hashed_password = auth_handler.encode_password(user_details.password)
-    user = {'username': user_details.username, 'first_name': user_details.first_name,
-            'last_name': user_details.last_name, 'password': hashed_password}
-    return users_db.put(user)
-    # except:
-    #     error_msg = 'Failed to signup user'
-    #     return error_msg
+    try:
+        hashed_password = auth_handler.encode_password(user_details.password)
+        user = {'username': user_details.username, 'first_name': user_details.first_name,
+                'last_name': user_details.last_name, 'password': hashed_password}
+        return users_db.put(user)
+    except Exception:
+        error_msg = 'Failed to signup user'
+        return error_msg
 
 
 @app.post('/login')
