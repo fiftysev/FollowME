@@ -19,15 +19,16 @@
             </v-icon>
           </div>
         </div>
-        <div class="buttons flex-col items-center lg:flex-row lg:flex"
+        <div class="buttons flex-col items-center w-4/5 md:w-86 lg:w-auto md:py-2
+                    lg:p-0 md:justify-around lg:justify-start md:flex-row lg:flex"
              :class="{'hidden': buttonsHidden, 'flex': !buttonsHidden}">
             <div
               class="border-2 rounded-lg
-                     px-3 py-2 mt-4 lg:my-0 lg:mr-3
+                     px-3 py-2 mt-4 md:my-0 md:mr-3
                      hover:text-white font-bold text-center
                      cursor-pointer
                      border-green-600 hover:bg-green-600 text-green-200
-                     w-full lg:w-auto
+                     w-full md:w-2/5 lg:w-auto
                     "
               @click="button1Handler"
             >
@@ -40,10 +41,10 @@
             </div>
           <div
             class="border-2  rounded-lg
-                   px-3 py-2 mt-4 lg:m-0
+                   px-3 py-2 mt-4 md:m-0
                    hover:text-white font-bold text-center
                    cursor-pointer
-                   w-full lg:w-auto
+                   w-full md:w-2/5 lg:w-auto
                   "
             :class="{
             'border-red-600 text-red-200 hover:bg-red-600': isAuth,

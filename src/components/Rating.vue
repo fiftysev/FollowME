@@ -4,7 +4,7 @@
       half-increments
       hover
       length="5"
-      :size="star_size"
+      :size="starSize"
       @click.prevent="rate"
       color="#ffd061"
       background-color="#ffdc8a"
@@ -29,7 +29,7 @@ export default {
   },
 
   computed: {
-    star_size () {
+    starSize () {
       switch (this.$vuetify.breakpoint.name) {
         case 'xs': return 24
         case 'sm': return 24
