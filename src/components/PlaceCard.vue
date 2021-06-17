@@ -42,7 +42,7 @@
     <div class="lg:w-1/2 flex flex-col justify-around lg:p-8 text-center items-center">
 
       <div class="container flex justify-center items-end hidden lg:flex">
-        <h3 class="lg:text-4xl xl:text-4xl 2xl:text-5xl px-6"
+        <h3 class="lg:text-4xl xl:text-4xl 2xl:text-5xl px-6 font-bold"
         >{{title}}</h3>
 
           <h3 class="lg:text-2xl 2xl:text-3xl"

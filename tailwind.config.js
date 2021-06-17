@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: [
     './public/**/*.html',
@@ -20,6 +22,11 @@ module.exports = {
       '2xl': {
         min: '1537px'
       }
+    },
+    fontFamily: {
+      'sans': ['nunito', ...defaultTheme.fontFamily.sans],
+      'serif': ['nunito', ...defaultTheme.fontFamily.serif],
+      'mono': ['nunito', ...defaultTheme.fontFamily.mono]
     },
     extend: {
       padding: {
