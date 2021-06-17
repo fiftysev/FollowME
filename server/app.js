@@ -9,37 +9,22 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
-app.use('/auth', authRouter)
-app.use('/generator', generatorRouter)
 app.use(cors())
 
-let CATEGORIES = [
-    {id: 1, value: "bar", text: "Бары"},
-    {id: 2, value: "cafe", text: "Кафе"},
-    {id: 3, value: "places", text: "Места для прогулок"},
-    {id: 4, value: "sport", text: "Спортивные площадки"},
-    {id: 5, value: "cinema", text: "Кинотеатры"},
-    {id: 6, value: "enjoy_places", text: "Развлечения"},
-];
+app.use('/auth', authRouter)
+app.use('/generator', generatorRouter)
 
-let place = {
-    title: 'KFC',
-    address: 'ул. Калинина, 8',
-    description: 'Место, где скорее всего придется работать, если не удастся защитить курсач на отлично',
-    bus_station: 'Калина Молл',
-    rating: 4.8,
-    tags: ['кафе', 'лаундж'],
-    photo: 'https://res.cloudinary.com/glovoapp/w_1200,f_auto,q_auto/Stores/wqqzd0povgbjdu30jlx0'
-}
+let CATEGORIES = [
+    {id: 1, value: "Бары", text: "Бары"},
+    {id: 2, value: "Кафе", text: "Кафе"},
+    {id: 3, value: "Места для прогулок", text: "Места для прогулок"},
+    {id: 4, value: "Спортивные площадки", text: "Спортивные площадки"},
+    {id: 5, value: "Кинотеатры", text: "Кинотеатры"},
+    {id: 6, value: "Развлечения", text: "Развлечения"},
+];
 
 app.get('/api/categories', (req, res) => {
         res.status(200).json(CATEGORIES);
-});
-
-app.get('/place/:category', (req, res) => {
-    setTimeout(() =>
-        res.status(200).json(place),
-        3000)
 });
 
 app.use('/', express.static(path.resolve(__dirname, '../dist')));

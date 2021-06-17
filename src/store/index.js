@@ -89,7 +89,11 @@ export default new Vuex.Store({
     getPlace ({ commit }, category) {
       return new Promise((resolve, reject) => {
         commit('place_request')
-        axios(`/place/${category}`)
+        axios('generator/place', {
+          params: {
+            category: category
+          }
+        })
           .then(res => {
             const place = res.data
             commit('place_generate_success', place)
