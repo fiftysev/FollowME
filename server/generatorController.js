@@ -2,6 +2,10 @@ const Place = require('./models/place')
 const siteUser = require('./models/siteUser')
 const {validationResult} = require('express-validator')
 
+Array.prototype.random = function (){
+  return this[Math.floor(Math.random() * this.length)];
+}
+
 class GeneratorController {
   async addPlace(req, res) {
     try {
@@ -46,13 +50,12 @@ class GeneratorController {
       res.status(400).json({message: "You are invalid!"});
     }
     const place = await Place.find({tags: category});
-    const user = await siteUser.findOne({username: "bboomerang"});
-    user.places.push(place[0]._id);
-    user.save();
+    // const user = await siteUser.findOne({username: "bboomerang"});
+    // user.save();
     if (!place) {
       res.status(400).json('Net mesta bro');
     }
-    return res.status(200).send(place[0])
+    return res.status(200).send(place.random())
   }
 }
 
