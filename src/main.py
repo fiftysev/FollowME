@@ -62,28 +62,19 @@ def signup(user_details: schemas.AuthModel):
 @app.post('/login')
 def login(user_details: schemas.AuthModel):
     user = users_db.get(user_details.username)
-    if (user is None):
+    if user is None:
         return HTTPException(status_code=401, detail='Invalid username')
-    if (not auth_handler.verify_password(user_details.password, user['password'])):
+    if not auth_handler.verify_password(user_details.password, user['password']):
         return HTTPException(status_code=401, detail='Invalid password')
 
-    access_token = auth_handler.encode_token(user['key'])
-    refresh_token = auth_handler.encode_refresh_token(user['key'])
-    return {'access_token': access_token, 'refresh_token': refresh_token}
+    access_token = auth_handler.encode_token(user['username'])
+    change_token = auth_handler.encode_refresh_token(user['username'])
+    return {'access_token': access_token, 'refresh_token': change_token}
 
 
-@app.get('/refresh_token')
+@app.get('/change_token')
 def refresh_token(credentials: HTTPAuthorizationCredentials = Security(security)):
-    refresh_token = credentials.credentials
-    new_token = auth_handler.refresh_token(refresh_token)
+    change_token = credentials.credentials
+    new_token = auth_handler.refresh_token(change_token)
     return {'access_token': new_token}
 
-# @app.post('/secret')
-# def secret_data(credentials: HTTPAuthorizationCredentials = Security(security)):
-#     token = credentials.credentials
-#     if(auth_handler.decode_token(token)):
-#         return 'Top Secret data only authorized users can access this info'
-#
-# @app.get('/notsecret')
-# def not_secret_data():
-#     return 'Not secret data'
