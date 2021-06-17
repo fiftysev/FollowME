@@ -1,6 +1,8 @@
 const Place = require('./models/place')
 const siteUser = require('./models/siteUser')
+const jwt = require('jsonwebtoken')
 const {validationResult} = require('express-validator')
+const {secret} = require('./config')
 
 Array.prototype.random = function (){
   return this[Math.floor(Math.random() * this.length)];
@@ -56,6 +58,46 @@ class GeneratorController {
       res.status(400).json('Net mesta bro');
     }
     return res.status(200).send(place.random())
+  }
+
+  async rate(req, res) {
+    try {
+      const userToken = req.headers.authorization.split(' ')[1];
+      if (!userToken) {
+        return res.status(403).json({message: 'authorization failed'});
+      }
+
+      const {placeId, rate} = req.body
+      let place = await Place.findOne({_id: placeId})
+
+      const countRate = place.rates_count + 1;
+      const rateSum = place.sum_of_rating + rate;
+      const currentRating = rateSum / countRate;
+
+      place = await Place.findOneAndUpdate({_id: placeId}, {$set: {
+          rates_count: countRate,
+          sum_of_rating: rateSum,
+          rating: currentRating
+        }});
+      place.save()
+
+      const userId = jwt.verify(userToken, secret);
+      const userPlace = {
+        _id: place._id,
+        title: place.title,
+        photo: place.photo.random(),
+        rating: rate
+      }
+
+      const user = await siteUser.findOne({_id: userId.id})
+      user.places.push(userPlace);
+      user.save()
+
+      res.status(200).send(place.rating)
+    } catch (e) {
+      console.log(e);
+      return res.status(403).json({message: 'Authorized failed'})
+    }
   }
 }
 
