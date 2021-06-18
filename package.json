@@ -26,6 +26,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.4",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vue-slick-carousel": "^1.0.6",
     "vue-tailwind": "^2.3.0",
     "vuelidate": "^0.7.6",
     "vuetify": "^2.4.0",

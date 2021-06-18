@@ -6,11 +6,15 @@
               rounded-2xl sm:text-center
               sm:text-xl md:text-2xl lg:text-xl xl:text-xl 2xl:text-2xl">
 
-    <div class="lg:w-1/2 px-4 pt-4 lg:p-8 flex flex-col justify-between text-center">
+    <div
+      class="lg:w-1/2 px-4 pt-4 lg:p-8 flex flex-col justify-between text-center"
+      v-if="!galleryOpen"
+    >
       <img
           :src="photo"
           alt=""
           class="rounded-2xl object-cover self-center"
+          @click="galleryOpen = true"
       >
       <div class="container flex justify-center items-end py-4 lg:hidden">
         <h3 class="text-3xl md:text-4xl px-4">{{title}}</h3>
@@ -39,7 +43,10 @@
 
     </div>
 
-    <div class="lg:w-1/2 flex flex-col justify-around lg:p-8 text-center items-center">
+    <div
+      class="lg:w-1/2 flex flex-col justify-around lg:p-8 text-center items-center"
+      v-if="!galleryOpen"
+    >
 
       <div class="container flex justify-center items-end hidden lg:flex">
         <h3 class="lg:text-4xl xl:text-4xl 2xl:text-5xl px-6 font-bold"
@@ -111,6 +118,11 @@ export default {
     tags: {
       type: Array,
       default: null
+    }
+  },
+  data () {
+    return {
+      galleryOpen: false
     }
   },
   computed: {
