@@ -5,7 +5,7 @@
       hover
       length="5"
       :size="starSize"
-      @click.prevent="rate"
+      @input="rate"
       color="#ffd061"
       background-color="#ffdc8a"
     ></v-rating>
@@ -16,14 +16,15 @@
 export default {
   name: 'rating',
   props: {
-    rating_value: {
-      type: Number,
-      default: 2.5
+    _id: {
+      type: String,
+      default: '1'
     }
   },
 
   data () {
     return {
+      placeId: this._id,
       userRating: null
     }
   },
@@ -42,7 +43,14 @@ export default {
   },
   methods: {
     async rate () {
-      await request('/api/place', this.userRating)
+      await request('/generator/rate', {
+        placeId: this.placeId,
+        userRating: this.userRating
+      })
+    },
+
+    test_rate () {
+      console.log(this._id)
     }
   }
 }
