@@ -52,15 +52,19 @@ class authController{
             res.status(400).json({message: "Login error , check data"});
         }
     }
-
-    async usersGetter(req, res) {
-        try {
-            const users = await siteUser.find();
-            res.json(users);
-        }catch(e) {
-            console.log(e);
-            res.status(400).json({message: 'GG WP'});
+    async checkUserAvailability(req, res) {
+      try{
+        const username = req.query.username;
+        const check = await siteUser.find({username: username});
+        if (check.length > 0) {
+          return res.json({status: false});
+        } else {
+          return res.json({message: true});
         }
+      } catch (e) {
+        console.log(e);
+        return res.status(401).json({message: 'Bad request'});
+      }
     }
 }
 

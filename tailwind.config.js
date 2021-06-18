@@ -24,9 +24,9 @@ module.exports = {
       }
     },
     fontFamily: {
-      'sans': ['nunito', ...defaultTheme.fontFamily.sans],
-      'serif': ['nunito', ...defaultTheme.fontFamily.serif],
-      'mono': ['nunito', ...defaultTheme.fontFamily.mono]
+      sans: ['nunito', ...defaultTheme.fontFamily.sans],
+      serif: ['nunito', ...defaultTheme.fontFamily.serif],
+      mono: ['nunito', ...defaultTheme.fontFamily.mono]
     },
     extend: {
       padding: {

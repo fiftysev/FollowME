@@ -67,11 +67,14 @@
           placeholder="god_damn424"
           autocomplete="username"
           class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
-          required />
+          required
+          @keyup="usernameAvailable"
+        />
         <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.username.required">Обязательное поле</label>
         <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.username.alphaNum">используйте латиницу и цифры</label>
         <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.username.minLength">Длина должна быть больше 8 символов</label>
         <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.username.maxLength">Длина должна быть меньше 16 символов</label>
+        <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!username_available && username_available != null">Имя пользователя занято</label>
         <label
           for="password"
           class="block mt-2 text-xs font-semibold text-gray-600 uppercase"
@@ -156,7 +159,8 @@ export default {
       lastName: '',
       username: '',
       password: '',
-      password_confirmation: ''
+      password_confirmation: '',
+      username_available: null
     }
   },
   methods: {
@@ -173,6 +177,17 @@ export default {
     },
     alreadyRegister () {
       this.$router.push('/login')
+    },
+    usernameAvailable () {
+      if (this.username.length >= 8) {
+        this.$http.get('/auth/nameavailable', {
+          params: {
+            username: this.username
+          }
+        }).then(res => {
+          this.username_available = res.data.status
+        })
+      }
     }
   }
 }

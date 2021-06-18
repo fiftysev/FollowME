@@ -10,6 +10,5 @@ router.post('/register',[
         .isLength({min: 8, max: 16})
 ],controller.registration);
 router.post('/login', controller.login);
-router.get('/users', authMiddleware, controller.usersGetter);
-
+router.get('/nameavailable', controller.checkUserAvailability);
 module.exports = router
