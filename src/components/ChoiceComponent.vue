@@ -56,7 +56,6 @@ export default {
       loading: false,
       selected: null,
       options: [
-        { id: 1, value: 'bar', text: 'Бары' }
       ],
       notSelectedExceptionMessage: 'Чтобы осуществить поиск, выберите категорию.',
       multiLine: true,
@@ -80,7 +79,7 @@ export default {
     }
   },
   async created () {
-    await this.$http.get('/api/categories')
+    await this.$http.get('/generator/categories')
       .then(res => {
         this.options = res.data
       })

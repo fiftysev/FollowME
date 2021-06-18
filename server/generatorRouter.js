@@ -6,6 +6,6 @@ const controller = require('./generatorController')
 router.post('/add', controller.addPlace);
 router.get('/place', controller.getPlace);
 router.post('/rate', controller.rate);
-
+router.get('/categories', controller.getCategories);
 
 module.exports = router
