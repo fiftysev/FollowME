@@ -11,7 +11,8 @@ export default new Vuex.Store({
     status: '',
     token: '',
     user: {},
-    place: {}
+    place: {},
+    errorField: ''
   },
   mutations: {
     auth_request (state) {
@@ -20,12 +21,14 @@ export default new Vuex.Store({
     auth_success (state, token) {
       state.status = 'success'
       state.token = token
+      state.errorField = ''
     },
     user_success (state, user) {
       state.user = user
     },
-    auth_error (state) {
+    auth_error (state, errorField) {
       state.status = 'error'
+      state.errorField = errorField
     },
     logout (state) {
       state.status = ''
@@ -56,7 +59,8 @@ export default new Vuex.Store({
             resolve(res)
           })
           .catch(err => {
-            commit('auth_error')
+            const fieldError = err.response.data.field[0]
+            commit('auth_error', fieldError)
             reject(err)
           })
       })

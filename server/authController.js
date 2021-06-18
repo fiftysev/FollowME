@@ -39,16 +39,15 @@ class authController{
             const {username, password} = req.body;
             const user = await siteUser.findOne({username});
             if (!user) {
-                return res.status(400).json({message: `user ${username} is doesn't exist`});
+                return res.status(400).json({field: 'username invalid'});
             }
             const validPassword = bcrypt.compareSync(password, user.password);
             if (!validPassword) {
-                return res.status(400).json({message: 'invalid password'});
+                return res.status(400).json({field: 'password invalid'});
             }
             const token = generateToken(user._id);
             return res.status(200).send({auth: true, token: token, user: user});
         }catch(e) {
-            console.log(e);
             res.status(400).json({message: "Login error , check data"});
         }
     }
