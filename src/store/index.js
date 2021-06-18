@@ -59,7 +59,7 @@ export default new Vuex.Store({
             resolve(res)
           })
           .catch(err => {
-            const fieldError = err.response.data.field[0]
+            const fieldError = err.response.data.field
             commit('auth_error', fieldError)
             reject(err)
           })

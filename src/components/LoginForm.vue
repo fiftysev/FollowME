@@ -56,6 +56,12 @@
         </button>
       </form>
     </div>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="timeout"
+    >
+      {{ loginErrorMessage }}
+    </v-snackbar>
   </div>
 </template>
 
@@ -88,7 +94,10 @@ export default {
   data () {
     return {
       username: '',
-      password: ''
+      password: '',
+      loginErrorMessage: '',
+      timeout: 3000,
+      snackbar: false
     }
   },
   methods: {
@@ -97,7 +106,19 @@ export default {
       const password = this.password
       this.$store.dispatch('login', { username, password })
         .then(() => this.$router.push('/'))
-        .catch(e => console.log(e))
+        .catch(e => {
+          if (e.response.data.field[0] === 'u') {
+            this.loginErrorMessage = 'Неверное имя пользователя!'
+          } else if (e.response.data.field[0] === 'p') {
+            this.loginErrorMessage = 'Неверный пароль!'
+          }
+          this.snackbar = true
+        })
+    }
+  },
+  created () {
+    if (this.$store.state.errorField === '') {
+      this.loginErrorMessage = ''
     }
   }
 }
