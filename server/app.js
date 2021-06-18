@@ -17,10 +17,6 @@ app.use('/generator', generatorRouter)
 
 app.use('/', express.static(path.resolve(__dirname, '../dist')));
 
-app.get('*', (req, res) => {
-    res.send(path.resolve(__dirname, '../dist', 'index.html'))
-})
-
 const start = async () => {
     try {
         await mongoose.connect(`mongodb+srv://dbEgor:qwerty123@forexample.qzsin.mongodb.net/testdbfollowme?retryWrites=true&w=majority`);
