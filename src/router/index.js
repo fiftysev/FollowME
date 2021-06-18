@@ -4,9 +4,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CardView from '@/views/CardView'
 import RegistrationForm from '@/components/RegistrationForm'
-import AuthUserBoard from '@/components/AuthUserBoard'
 import LoginForm from '@/components/LoginForm'
 import store from '../store/index'
+import AuthUserBoardView from '@/views/AuthUserBoardView'
 
 Vue.use(VueRouter)
 
@@ -32,7 +32,7 @@ const routes = [
   {
     path: '/userboard',
     name: 'UserBoard',
-    component: AuthUserBoard,
+    component: AuthUserBoardView,
     meta: {
       requiresAuth: true
     }
