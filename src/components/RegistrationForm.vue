@@ -111,7 +111,7 @@
         <label for="password-confirm" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.password_confirmation.sameAsPassword">Пароли не совпадают</label>
         <button
           type="submit"
-          class="w-full mt-5 py-2 tracking-widest uppercase font-medium bg-black rounded shadow-md focus:outline-none"
+          class="w-full mt-5 py-2 tracking-widest uppercase font-medium bg-black rounded shadow-md focus:outline-none cursor-default"
           :disabled="!isValid"
           :class="{active: isValid}"
           @click.prevent="handleRegisterSubmit"
@@ -196,7 +196,7 @@ export default {
   computed: {
     isValid () {
       this.$v.$touch()
-      return !this.$v.$invalid && this.username_available
+      return !this.$v.$invalid
     }
   }
 }
@@ -210,6 +210,6 @@ export default {
     @apply rounded-lg
   }
   .active {
-    @apply hover:bg-blue-600 hover:shadow-none
+    @apply hover:bg-blue-600 hover:shadow-none cursor-pointer
   }
 </style>
