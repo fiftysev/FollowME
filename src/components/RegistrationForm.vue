@@ -75,6 +75,7 @@
         <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.username.minLength">Длина должна быть больше 8 символов</label>
         <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.username.maxLength">Длина должна быть меньше 16 символов</label>
         <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!username_available && username_available != null">Имя пользователя занято</label>
+        <label for="username" class="block mt-2 text-xs font-semibold uppercase text-white" v-else-if="username">Имя пользователя свободно</label>
         <label
           for="password"
           class="block mt-2 text-xs font-semibold text-gray-600 uppercase"
@@ -110,7 +111,9 @@
         <label for="password-confirm" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.password_confirmation.sameAsPassword">Пароли не совпадают</label>
         <button
           type="submit"
-          class="w-full mt-5 py-2 tracking-widest uppercase font-medium bg-black rounded shadow-md hover:bg-blue-600 hover:shadow-none focus:outline-none"
+          class="w-full mt-5 py-2 tracking-widest uppercase font-medium bg-black rounded shadow-md focus:outline-none"
+          :disabled="!isValid"
+          :class="{active: isValid}"
           @click.prevent="handleRegisterSubmit"
         ><span class="text-white">Зарегистрироваться</span>
         </button>
@@ -189,6 +192,12 @@ export default {
         })
       }
     }
+  },
+  computed: {
+    isValid () {
+      this.$v.$touch()
+      return !this.$v.$invalid && this.username_available
+    }
   }
 }
 </script>
@@ -199,5 +208,8 @@ export default {
   }
   button {
     @apply rounded-lg
+  }
+  .active {
+    @apply hover:bg-blue-600 hover:shadow-none
   }
 </style>
