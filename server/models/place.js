@@ -1,4 +1,4 @@
-const {Schema, model, ObjectId} = require('mongoose')
+const {Schema, model} = require('mongoose')
 
 const place = new Schema({
   title: {type: String, required: true},

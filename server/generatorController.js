@@ -52,8 +52,6 @@ class GeneratorController {
       res.status(400).json({message: "You are invalid!"});
     }
     const place = await Place.find({tags: category});
-    // const user = await siteUser.findOne({username: "bboomerang"});
-    // user.save();
     if (!place) {
       res.status(400).json('Net mesta bro');
     }
