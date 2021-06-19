@@ -7,8 +7,7 @@
       :size="starSize"
       color="#ffd061"
       background-color="#ffdc8a"
-      :readonly="userRating != null"
-      :value="userRating"
+      :readonly="userRating != null && alreadyRates"
       @input="sendRating"
     ></v-rating>
 </template>
@@ -18,7 +17,8 @@ export default {
   name: 'rating',
   data () {
     return {
-      userRating: null
+      userRating: null,
+      alreadyRates: false
     }
   },
   computed: {
@@ -39,6 +39,18 @@ export default {
       const rate = this.userRating
       const userToken = this.$store.getters.getToken
       this.$store.dispatch('sendRate', { userToken, placeId, rate })
+      this.alreadyRates = true
+    }
+  },
+  created () {
+    if (this.$store.getters.authedUser) {
+      const placeId = this.$store.getters.getPlaceID
+      const userPlaces = this.$store.getters.authedUser.places
+      const check = userPlaces.find(place => place._id === placeId)
+      if (check !== undefined) {
+        this.userRating = check.rating
+        this.alreadyRates = true
+      } else this.alreadyRates = false
     }
   }
 }

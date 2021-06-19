@@ -34,6 +34,7 @@ export default new Vuex.Store({
     logout (state) {
       state.status = ''
       state.token = ''
+      state.user = null
     },
     place_request (state) {
       state.status = 'loading'
@@ -125,7 +126,6 @@ export default new Vuex.Store({
         const { userToken, placeId, rate } = rating
         commit ('sending_rate')
         axios.defaults.headers.common['Authorization'] = "Bearer" + " " + userToken
-        console.log(axios.defaults.headers)
         axios.post('generator/sendrate', {
           placeId, rate
         } )

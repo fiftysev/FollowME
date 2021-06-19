@@ -81,6 +81,13 @@
         </span>
       </div>
     </div>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="timeout"
+      min-width="250"
+    >
+      <span class="font-bold text-base">{{ message }}</span>
+    </v-snackbar>
   </div>
 </template>
 
@@ -121,7 +128,10 @@ export default {
   },
   data () {
     return {
-      galleryOpen: false
+      galleryOpen: false,
+      snackbar: false,
+      timeout: 3000,
+      message: 'Возможность оценки мест доступна только авторизованным пользователям!'
     }
   },
   computed: {
@@ -134,6 +144,11 @@ export default {
         case 'xl': return 32
         default: return 48
       }
+    }
+  },
+  created () {
+    if (!this.$store.getters.isAuth) {
+      this.snackbar = true
     }
   }
 }
