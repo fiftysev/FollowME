@@ -61,6 +61,7 @@ class GeneratorController {
 
   async rate(req, res) {
     try {
+      //Здесь не работает, вот код ошибки: TypeError: Cannot read property 'split' of undefined
       const userToken = req.headers.authorization.split(' ')[1];
       if (!userToken) {
         return res.status(403).json({message: 'authorization failed'});

@@ -30,7 +30,7 @@
                      border-green-600 hover:bg-green-600 text-green-200
                      w-full md:w-2/5 lg:w-auto
                     "
-              @click="button1Handler"
+              @click="button1Action"
             >
               <v-icon v-if="isAuth"
                       style="color: white"
@@ -50,7 +50,7 @@
             'border-red-600 text-red-200 hover:bg-red-600': isAuth,
             'border-blue-600 text-blue-200 hover:bg-blue-600': !isAuth
             }"
-            @click="button2Handler"
+            @click="button2Action"
           >
             {{ getButton2Text }}
           </div>
@@ -85,12 +85,12 @@ export default {
       return this.isAuth ? 'Выйти' : 'Регистрация'
     },
 
-    button1Handler () {
-      return this.isAuth ? this.handleProfileTransition : this.handleLogin
+    button1Action () {
+      return this.isAuth ? this.profileTransitionAction : this.loginAction
     },
 
-    button2Handler () {
-      return this.isAuth ? this.handleLogout : this.handleSignup
+    button2Action () {
+      return this.isAuth ? this.logoutAction : this.signupAction
     },
 
     getArrowDirection () {
@@ -99,22 +99,22 @@ export default {
 
   },
   methods: {
-    handleLogout () {
+    logoutAction () {
       this.$store.dispatch('logout')
         .then(() => {
           this.$router.go(-1)
         })
     },
 
-    handleProfileTransition () {
+    profileTransitionAction () {
       this.$router.push('/userboard')
     },
 
-    handleLogin () {
+    loginAction () {
       this.$router.push('/login')
     },
 
-    handleSignup () {
+    signupAction () {
       this.$router.push('/signup')
     }
   },
