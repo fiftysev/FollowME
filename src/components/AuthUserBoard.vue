@@ -1,32 +1,31 @@
 <template>
   <div class="container
               flex flex-col text-center
-              bg-blue-300 shadow-md rounded-2xl
-              sm:text-xl md:text-2xl lg:text-xl xl:text-xl 2xl:text-2xl text-white
+              bg-white shadow-md rounded-2xl
+              text-2xl md:text-3xl lg:text-3xl xl:text-3xl 2xl:text-4xl text-black
               p-4
               ">
-    <img src="https://www.placecage.com/256/256"
-         alt=""
-         class="rounded-2xl object-cover self-center"
-    >
-    <h1>{{ username }}</h1>
-    <h1>{{ firstName }}</h1>
-    <h1>{{ lastName }}</h1>
-    <div class="container flex flex-col">
+    <h1 class="text-gray-500 text-3xl lg:text-4xl 2xl:text-5xl  py-2 md:py-4 xl:py-6">{{ username }}</h1>
+    <h1 class="">{{ firstName }} {{ lastName }}</h1>
+    <div class="container flex flex-col md:flex-row flex-wrap py-2">
       <div v-for="place in userPlaces"
            v-bind:key="place._id"
-        class="flex p-2"
+        class="flex flex-col items-center justify-between
+               md:w-2/5 md:m-1/20 xl:w-3/12 xl:m-1/24 p-2 sm:p-4 my-2
+               shadow-lg rounded-md border"
       >
         <img :src="place.photo"
              alt=""
-             class="object-cover rounded-md"
+             class="object-cover rounded-md p-2"
         >
-        <h1>{{place.name}}
+
+        <h1 class="p-2">{{place.title}}</h1>
+        <h1 class="p-2">
+          {{place.rating}}
           <v-icon
             color="#ffd061"
             background-color="#ffdc8a"
             :size="24"
-            class="pr-2"
           >
             mdi-star
           </v-icon>

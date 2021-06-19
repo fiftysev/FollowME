@@ -4,7 +4,7 @@
       :first-name="siteUserData.firstname"
       :last-name="siteUserData.lastname"
       :username="siteUserData.username"
-      :user-places="siteUserData.userPlaces">
+      :user-places="siteUserData.places">
     </AuthUserBoard>
   </div>
 </template>
@@ -21,7 +21,7 @@ export default {
         firstname: 'bar',
         lastname: 'bar',
         username: 'bar',
-        userPlaces: []
+        places: []
       }
     }
   },

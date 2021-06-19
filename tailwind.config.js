@@ -32,6 +32,10 @@ module.exports = {
       padding: {
         full: '100%'
       },
+      margin: {
+        '1/20': '5%',
+        '1/24': '4.16%'
+      },
       width: {
         128: '32rem'
       },
