@@ -1,7 +1,7 @@
 <template>
   <div class="w-2/3 shadow-md
               flex flex-col lg:flex-row justify-between
-              bg-white rounded-2xl ">
+              bg-white rounded-2xl my-12 ">
 
     <div class="lg:w-1/2 pt-4 lg:p-8 flex flex-col text-center justify-around">
         <v-skeleton-loader
