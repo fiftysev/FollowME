@@ -17,7 +17,7 @@
           @click="galleryOpen = true"
       >
       <div class="container flex justify-center items-end py-4 lg:hidden">
-        <h3 class="text-3xl md:text-4xl px-4">{{title}}</h3>
+        <h3 class="text-3xl md:text-4xl px-4 font-bold">{{title}}</h3>
         <h3 class="text-xl"
         >
           {{rating}}
@@ -67,7 +67,7 @@
       </div>
 
       <hr>
-      <p class="py-4 lg:p-0 w-2/3 lg:w-full self-center">{{description}}</p>
+      <p class="py-4 lg:p-0 w-2/3 lg:w-full self-center text-justify">{{description}}</p>
       <hr>
       <div class="container flex py-4 lg:p-0 justify-center">
         <!--Тут наверное немного костыльно, хотя это единственное, что работает из того, что пробовал-->
