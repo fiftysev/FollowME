@@ -1,7 +1,6 @@
 <template>
   <div class="w-5/6 lg:w-2/3 place flex justify-center py-12 mb-12">
     <PlaceCard
-      :_id="placeOptions._id"
       :title="placeOptions.title"
       :address="placeOptions.address"
       :description="placeOptions.description"
@@ -22,7 +21,6 @@ export default {
     return {
       loading: true,
       placeOptions: {
-        _id: 'bar',
         title: 'bar',
         address: 'bar',
         description: 'bar',

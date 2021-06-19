@@ -37,7 +37,6 @@
       <span class="py-2 mt-2 text-base"><i class="fas fa-map-marked-alt"></i> {{address}}</span>
       <span class="py-2 text-base"><i class="fas fa-bus"></i> {{bus_station}}</span>
       <rating
-        :_id="_id"
         class="py-2"
       ></rating>
 
@@ -91,10 +90,6 @@ export default {
   name: 'PlaceCard',
   components: { Rating },
   props: {
-    _id: {
-      type: String,
-      default: '1'
-    },
     title: {
       type: String,
       default: 'ДВФУ'
