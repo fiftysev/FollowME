@@ -8,19 +8,17 @@
 
     <div
       class="lg:w-1/2 px-4 pt-4 lg:p-8 flex flex-col justify-between text-center"
-      v-if="!galleryOpen"
     >
       <img
           :src="photo"
           alt=""
           class="rounded-2xl object-cover self-center"
-          @click="galleryOpen = true"
       >
       <div class="container flex justify-center items-end py-4 lg:hidden">
         <h3 class="text-3xl md:text-4xl px-4 font-bold">{{title}}</h3>
         <h3 class="text-xl"
         >
-          {{rating}}
+          {{rating.toFixed(2)}}
         </h3>
 
         <v-icon
@@ -44,7 +42,6 @@
 
     <div
       class="lg:w-1/2 flex flex-col justify-around lg:p-8 text-center items-center"
-      v-if="!galleryOpen"
     >
 
       <div class="container flex justify-center items-end hidden lg:flex">
@@ -128,7 +125,6 @@ export default {
   },
   data () {
     return {
-      galleryOpen: false,
       snackbar: false,
       timeout: 3000,
       message: 'Возможность оценки мест доступна только авторизованным пользователям!'
