@@ -5,7 +5,7 @@
               text-2xl md:text-3xl lg:text-3xl xl:text-3xl 2xl:text-4xl text-black
               p-4
               ">
-    <h1 class="text-gray-500 text-3xl lg:text-4xl 2xl:text-5xl  py-2 md:py-4 xl:py-6">{{ username }}</h1>
+    <h1 class="text-gray-500 text-3xl lg:text-4xl 2xl:text-5xl  py-2 md:py-4 xl:py-6">@{{ username }}</h1>
     <h1 class="">{{ firstName }} {{ lastName }}</h1>
     <div class="container flex flex-col md:flex-row flex-wrap py-2">
       <div v-for="place in userPlaces"
