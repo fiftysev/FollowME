@@ -61,7 +61,7 @@ class GeneratorController {
 
   async rate(req, res) {
     try {
-      //Здесь не работает, вот код ошибки: TypeError: Cannot read property 'split' of undefined
+      console.log(req)
       const userToken = req.headers.authorization.split(' ')[1];
       if (!userToken) {
         return res.status(403).json({message: 'authorization failed'});
@@ -90,10 +90,13 @@ class GeneratorController {
       };
 
       const user = await siteUser.findOne({_id: userId.id});
+      if (!user) {
+        res.status(400).json({message: "Couldn't find user by id!"})
+      }
       await user.places.push(userPlace);
       await user.save();
 
-      res.status(200).send(place.rating)
+      return res.status(200).send(user)
     } catch (e) {
       console.log(e);
       return res.status(403).json({message: 'Authorized failed'});

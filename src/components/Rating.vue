@@ -7,6 +7,9 @@
       :size="starSize"
       color="#ffd061"
       background-color="#ffdc8a"
+      :readonly="userRating != null"
+      :value="userRating"
+      @input="sendRating"
     ></v-rating>
 </template>
 
@@ -18,7 +21,6 @@ export default {
       userRating: null
     }
   },
-
   computed: {
     starSize () {
       switch (this.$vuetify.breakpoint.name) {
@@ -32,6 +34,12 @@ export default {
     }
   },
   methods: {
+    sendRating () {
+      const placeId = this.$store.getters.getPlaceID
+      const rate = this.userRating
+      const userToken = this.$store.getters.getToken
+      this.$store.dispatch('sendRate', { userToken, placeId, rate })
+    }
   }
 }
 
