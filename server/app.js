@@ -16,6 +16,9 @@ app.use('/auth', authRouter)
 app.use('/generator', generatorRouter)
 
 app.use('/', express.static(path.resolve(__dirname, '../dist')));
+app.get('/*',(req, res) => {
+  res.sendFile(path.join(__dirname + '../dist/index.html'))
+})
 
 const start = async () => {
     try {
