@@ -5,12 +5,13 @@ const authRouter = require('./authRouter');
 const generatorRouter = require('./generatorRouter');
 const cors = require('cors');
 const PORT = process.env.PORT || 3000;
-const Category = require('./models/category');
+const history = require('connect-history-api-fallback')
 
 const app = express();
 
 app.use(express.json());
 app.use(cors())
+app.use(history())
 
 app.use('/auth', authRouter)
 app.use('/generator', generatorRouter)
