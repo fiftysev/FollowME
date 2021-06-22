@@ -75,7 +75,7 @@
         <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.username.minLength">Длина должна быть больше 8 символов</label>
         <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!$v.username.maxLength">Длина должна быть меньше 16 символов</label>
         <label for="username" class="block mt-2 text-xs font-semibold text-red-500 uppercase" v-if="!username_available && username_available != null">Имя пользователя занято</label>
-        <label for="username" class="block mt-2 text-xs font-semibold uppercase text-white" v-else-if="username">Имя пользователя свободно</label>
+        <label for="username" class="block mt-2 text-xs font-semibold uppercase text-white" v-else-if="username && username.length >= 8">Имя пользователя свободно</label>
         <label
           for="password"
           class="block mt-2 text-xs font-semibold text-gray-600 uppercase"
