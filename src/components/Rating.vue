@@ -7,7 +7,7 @@
       :size="starSize"
       color="#ffd061"
       background-color="#ffdc8a"
-      :readonly="userRating != null && alreadyRates && !isAuth"
+      :readonly="userRating != null || alreadyRates || !isAuth"
       @input="sendRating"
     ></v-rating>
 </template>
